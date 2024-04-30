@@ -9,5 +9,4 @@ public class MinglecrmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MinglecrmApplication.class, args);
 	}
-
 }
