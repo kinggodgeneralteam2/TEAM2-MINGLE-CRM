@@ -8,6 +8,6 @@
 /dataSources.local.xml
 
 # Gradle
-.idea/gradle.xml
+.idea/**/gradle.xml
 
 .idea/**/workspace.xml
