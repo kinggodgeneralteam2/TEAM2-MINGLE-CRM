@@ -1,21 +1,3 @@
--- -- User 데이터 삽입
--- INSERT INTO users (name, email, password, authority, deleted_yn) VALUES ('John Doe', 'john.doe@example.com', 'password123', 'MANAGER', false);
--- INSERT INTO users (name, email, password, authority, deleted_yn) VALUES ('Jane Doe', 'jane.doe@example.com', 'password456', 'STAFF', false);
---
--- -- Customer 데이터 삽입
--- INSERT INTO customer (name, customer_group, phone, address, user_id, memo, gender, birth)
--- VALUES ('Alice Johnson', 'VIP', '123-456-7890', '1234 Elm St, Somewhere', 1, 'Important client', 'Female', '1985-07-20');
--- INSERT INTO customer (name, customer_group, phone, address, user_id, memo, gender, birth)
--- VALUES ('Bob Brown', '기존', '987-654-3210', '5678 Oak St, Anywhere', 1, 'Frequent orders', 'Male', '1990-12-15');
--- INSERT INTO customer (name, customer_group, phone, address, user_id, memo, gender, birth)
--- VALUES ('Carol White', '기존', '456-789-0123', '9012 Maple St, Nowhere', 1, 'Rare visits', 'Female', '1992-05-30');
--- INSERT INTO customer (name, customer_group, phone, address, user_id, memo, gender, birth)
--- VALUES ('David Smith', 'VIP', '321-654-9870', '3456 Pine St, Elsewhere', 2, 'High spender', 'Male', '1980-08-25');
--- INSERT INTO customer (name, customer_group, phone, address, user_id, memo, gender, birth)
--- VALUES ('Eve Black', '신규', '654-321-7890', '7890 Ash St, Somewhere', 2, 'Medium spender', 'Female', '1988-03-15');
--- INSERT INTO customer (name, customer_group, phone, address, user_id, memo, gender, birth)
--- VALUES ('Frank Moore', '신규', '789-012-3456', '1234 Birch St, Anywhere', 2, 'Potential VIP', 'Male', '1995-07-07');
-
 -- USER 데이터 삽입
 INSERT INTO users (name, email, password, authority, deleted_yn)
 VALUES ('김동욱', 'dongwook@test.com', 'wook123', 'MANAGER', FALSE);
