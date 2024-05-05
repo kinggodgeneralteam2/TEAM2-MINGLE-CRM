@@ -32,64 +32,64 @@ export default {
       isSuccess: false // 로그인 성공 여부를 나타내는 변수 추가
     };
   },
-  // methods: {
-  //   async login() {
-  //     try {
-  //       // 서버에서 사용자 정보 가져오기
-  //       const response = await axios.get('http://localhost:3000/users');
-  //       const users = response.data;
-  //
-  //       // 사용자 배열이 정의되지 않은 경우 오류 처리
-  //       if (!users || users.length === 0) {
-  //         console.error('사용자 데이터가 없습니다.');
-  //         this.message = '사용자 데이터가 없습니다.';
-  //         return;
-  //       }
-  //
-  //       // 로그인 시도
-  //       const user = users.find(user => user.email === this.email && user.password === this.password);
-  //       if (user) {
-  //         // 로그인 성공 메시지 표시
-  //         this.message = `${user.name}님, 환영합니다!`;
-  //         this.isSuccess = true; // 성공 여부를 true로 설정하여 메시지 스타일 변경
-  //       } else {
-  //         // 로그인 실패 메시지 표시
-  //         this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
-  //         this.isSuccess = false; // 성공 여부를 false로 설정하여 메시지 스타일 변경
-  //       }
-  //     } catch (error) {
-  //       // 네트워크 오류 메시지 표시
-  //       console.error('로그인 오류:', error);
-  //       this.message = '로그인에 실패했습니다.';
-  //       this.isSuccess = false;
-  //     }
-  //   }
-  // }
   methods: {
     async login() {
       try {
-        const response = await axios.post('http://localhost:3000/login', {
-          email: this.email,
-          password: this.password
-        });
+        // 서버에서 사용자 정보 가져오기
+        const response = await axios.get('http://localhost:3000/users');
+        const users = response.data;
 
-        // 로그인 성공
-        this.message = `${response.data.name}님, 환영합니다!`;
-        this.isSuccess = true;
-      } catch (error) {
-        // 로그인 실패
-        if (error.response.status === 401) {
-          // 비밀번호가 틀린 경우 또는 사용자가 없는 경우
-          this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
-        } else {
-          // 네트워크 오류
-          console.error('로그인 오류:', error);
-          this.message = '로그인에 실패했습니다.';
+        // 사용자 배열이 정의되지 않은 경우 오류 처리
+        if (!users || users.length === 0) {
+          console.error('사용자 데이터가 없습니다.');
+          this.message = '사용자 데이터가 없습니다.';
+          return;
         }
+
+        // 로그인 시도
+        const user = users.find(user => user.email === this.email && user.password === this.password);
+        if (user) {
+          // 로그인 성공 메시지 표시
+          this.message = `${user.name}님, 환영합니다!`;
+          this.isSuccess = true; // 성공 여부를 true로 설정하여 메시지 스타일 변경
+        } else {
+          // 로그인 실패 메시지 표시
+          this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
+          this.isSuccess = false; // 성공 여부를 false로 설정하여 메시지 스타일 변경
+        }
+      } catch (error) {
+        // 네트워크 오류 메시지 표시
+        console.error('로그인 오류:', error);
+        this.message = '로그인에 실패했습니다.';
         this.isSuccess = false;
       }
     }
   }
+  // methods: {
+  //   async login() {
+  //     try {
+  //       const response = await axios.post('http://localhost:3000/login', {
+  //         email: this.email,
+  //         password: this.password
+  //       });
+  //
+  //       // 로그인 성공
+  //       this.message = `${response.data.name}님, 환영합니다!`;
+  //       this.isSuccess = true;
+  //     } catch (error) {
+  //       // 로그인 실패
+  //       if (error.response.status === 401) {
+  //         // 비밀번호가 틀린 경우 또는 사용자가 없는 경우
+  //         this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
+  //       } else {
+  //         // 네트워크 오류
+  //         console.error('로그인 오류:', error);
+  //         this.message = '로그인에 실패했습니다.';
+  //       }
+  //       this.isSuccess = false;
+  //     }
+  //   }
+  // }
 };
 </script>
 
