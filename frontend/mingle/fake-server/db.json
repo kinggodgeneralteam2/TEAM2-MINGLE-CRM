@@ -20,20 +20,7 @@
       "name": "강찬미",
       "phone": "01024551266",
       "password": "1234"
-    },
-    {
-      "id": "4dd1",
-      "email": "rkdcksal02@gmail.com",
-      "name": "강찬미",
-      "phone": "01024551266",
-      "password": "Pwd@1233"
-    },
-    {
-      "id": "c87d",
-      "email": "rkdcksal02@gmail.com",
-      "name": "강찬미",
-      "phone": "01024551266",
-      "password": "Pwd@1233"
     }
-  ]
+  ],
+  "login": []
 }
