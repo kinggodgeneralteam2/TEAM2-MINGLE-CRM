@@ -30,6 +30,7 @@
 
 <script>
 import axios from 'axios';
+import router from "@/router";
 
 export default {
   data() {
@@ -88,6 +89,9 @@ export default {
         });
         alert(`${this.name}님, 환영합니다! 회원가입이 성공적으로 완료되었습니다.`);
         this.message = response.data.message;
+        // 회원가입 성공 시 로그인 페이지로 이동합니다.
+        await router.push('/login');
+        // await : router.push 비동기 함수 -> Promise를 반환 -> 회원가입 요청이 성공적으로 처리되고, 회원가입 성공 메시지가 표시된 후에만 로그인 페이지로 이동
       } catch (error) {
         if (error.response) {
           this.message = error.response.data.message;
