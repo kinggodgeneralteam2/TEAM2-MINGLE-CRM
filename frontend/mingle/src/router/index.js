@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SignUpPage from "@/views/SignUpPage.vue";
 import LoginPage from "@/views/LoginPage.vue";
+import UserListPage from "@/views/UserListPage.vue";
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     name: 'Login',
     component: LoginPage // 회원가입 페이지 컴포넌트
   },
+  {
+    path: '/users',
+    name: 'Users',
+    component: UserListPage
+  }
 ]
 
 const router = createRouter({

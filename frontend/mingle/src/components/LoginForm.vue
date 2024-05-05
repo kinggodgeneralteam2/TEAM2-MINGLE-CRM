@@ -1,5 +1,5 @@
 <template>
-  <div class="signup-page">
+  <div class="login-page">
     <h2>로그인</h2>
     <form @submit.prevent="login" class="login-form">
       <!-- 이메일 입력 -->
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped>
-.signup-page {
+.login-page {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
