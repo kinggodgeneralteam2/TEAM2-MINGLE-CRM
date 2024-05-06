@@ -32,5 +32,4 @@ public class Customer extends BaseTimeEntity {
     private String memo;
     private String gender;
     private LocalDate birth;
-
 }
