@@ -4,6 +4,7 @@ package com.team2final.minglecrm.domain;
 import com.team2final.minglecrm.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,4 +34,32 @@ public class Customer extends BaseTimeEntity {
     private String gender;
     private LocalDate birth;
 
+    // id와 birth 제외
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCustomer_group(String customer_group) {
+        this.customer_group = customer_group;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }
