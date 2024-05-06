@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "user1@example.com",
+      "name": "User 1",
+      "phone": "123-456-7890",
+      "password": "password1"
+    },
+    {
+      "id": "2",
+      "email": "user2@example.com",
+      "name": "User 2",
+      "phone": "987-654-3210",
+      "password": "password2"
+    },
+    {
+      "id": "5672",
+      "email": "rkdcksal02@gmail.com",
+      "name": "강찬미",
+      "phone": "01024551266",
+      "password": "1234"
+    }
+  ],
+  "login": []
+}
