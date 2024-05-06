@@ -1,16 +1,24 @@
 <template>
-  <div>
+  <div class="login-page">
     <h1 v-if="user && user.name">{{ user.name }}님의 정보 수정 페이지</h1>
     <form v-if="user" @submit.prevent="updateUser" class="update-form">
-      <label for="email">이메일</label>
-      <input id="email" v-model="user.email" type="email" required>
-      <label for="name">이름</label>
-      <input id="name" v-model="user.name" type="text" required>
-      <label for="phone">전화번호</label>
-      <input id="phone" v-model="user.phone" type="tel" required>
-      <!-- 비밀번호 입력 필드 추가 -->
-      <label for="password">비밀번호</label>
-      <input id="password" v-model="user.password" type="password" required>
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input id="email" v-model="user.email" type="email" required>
+      </div>
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input id="name" v-model="user.name" type="text" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">전화번호</label>
+        <input id="phone" v-model="user.phone" type="tel" required>
+      </div>
+      <div class="form-group">
+        <!-- 비밀번호 입력 필드 추가 -->
+        <label for="password">비밀번호</label>
+        <input id="password" v-model="user.password" type="password" required>
+      </div>
       <button type="submit">저장</button>
     </form>
   </div>
@@ -43,10 +51,11 @@ export default {
         const userId = this.$route.params.id;
         // PUT 요청 시 사용자 정보와 함께 URL에 사용자 ID를 포함시킵니다.
         await axios.put(`http://localhost:3000/users/${userId}`, this.user);
-        console.log('User data updated successfully');
+        alert('사용자 정보가 성공적으로 업데이트되었습니다.');
+        console.log('사용자 정보가 성공적으로 업데이트되었습니다.');
         // 사용자 정보가 성공적으로 업데이트되면 다른 작업을 수행할 수 있습니다.
       } catch (error) {
-        console.error('Error updating user:', error);
+        console.error('사용자 정보를 업데이트하는 중 에러가 발생했습니다:', error);
       }
     }
   }
@@ -54,6 +63,21 @@ export default {
 </script>
 
 <style scoped>
+.login-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
