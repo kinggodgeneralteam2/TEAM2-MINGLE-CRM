@@ -33,7 +33,6 @@ public class Customer extends BaseTimeEntity {
     private String memo;
     private String gender;
     private LocalDate birth;
-<<<<<<< HEAD
 
     // id와 birth 제외
     public void setName(String name) {
@@ -63,6 +62,4 @@ public class Customer extends BaseTimeEntity {
     public void setGender(String gender) {
         this.gender = gender;
     }
-=======
->>>>>>> 75b6abff8ee0cead772c0486fcb60518bb87f6d7
 }
