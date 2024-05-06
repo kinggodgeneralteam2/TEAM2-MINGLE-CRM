@@ -20,20 +20,6 @@
       "name": "강찬미",
       "phone": "01024551266",
       "password": "1234"
-    },
-    {
-      "id": "8f2e",
-      "email": "coco@gmail.com",
-      "name": "코코",
-      "phone": "01024551266",
-      "password": "Coco@486"
-    },
-    {
-      "id": "f158",
-      "email": "coco@gmail.com",
-      "name": "강찬미",
-      "phone": "01024551266",
-      "password": "Coco@486"
     }
   ],
   "login": []
