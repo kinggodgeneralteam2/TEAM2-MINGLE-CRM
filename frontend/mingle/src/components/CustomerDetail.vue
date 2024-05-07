@@ -24,10 +24,6 @@
           <td>{{ customer.address }}</td>
         </tr>
         <tr>
-          <td>전화번호</td>
-          <td>{{ customer.phone }}</td>
-        </tr>
-        <tr>
           <td>담당자</td>
           <td>{{ customer.user }}</td>
         </tr>
@@ -45,6 +41,7 @@
         </tr>
       </tbody>
     </table>
+    <button @click="goToEditCustomerPage">고객 정보 수정</button>
   </div>
 </template>
 
@@ -74,6 +71,13 @@ export default {
         console.error("고객 정보를 불러오는 중 에러 발생:", error);
         // 에러 처리 로직 추가
       }
+    },
+    goToEditCustomerPage() {
+      // 고객 정보 수정 페이지로 이동하는 메서드
+      this.$router.push({
+        name: "CustomerEdit",
+        params: { id: this.customer.id },
+      });
     },
   },
 };

@@ -1,16 +1,16 @@
 <template>
   <div>
     <h1>고객 관리</h1>
-    <CustomerDetail />
+    <CustomerEdit />
   </div>
 </template>
 
 <script>
-import CustomerDetail from "@/components/CustomerDetail.vue";
+import CustomerEdit from "@/components/CustomerEdit.vue";
 
 export default {
   components: {
-    CustomerDetail,
+    CustomerEdit,
   },
 };
 </script>

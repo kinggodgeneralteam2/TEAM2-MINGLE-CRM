@@ -5,6 +5,7 @@ import LoginPage from "@/views/LoginPage.vue";
 import UserListPage from "@/views/UserListPage.vue";
 import CustomerListPage from "@/views/CustomerListPage.vue";
 import CustomerDetailPage from "@/views/CustomerDetailPage.vue";
+import CustomerEditPage from "@/views/CustomerEditPage.vue";
 
 const routes = [
   {
@@ -45,6 +46,12 @@ const routes = [
     path: "/customer/:id",
     name: "CustomerDetail",
     component: CustomerDetailPage,
+    props: true,
+  },
+  {
+    path: "/customer/:id/edit",
+    name: "CustomerEdit",
+    component: CustomerEditPage,
     props: true,
   },
 ];
