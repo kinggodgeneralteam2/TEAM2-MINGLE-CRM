@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInstance from "../axios-instance"
 
 export default {
   data() {
@@ -34,8 +34,8 @@ export default {
     async fetchCustomerDetails() {
       try {
         const customerId = this.$route.params.id;
-        const response = await axios.get(
-          `http://localhost:3000/customers/${customerId}`
+        const response = await axiosInstance.get(
+          `http://localhost:8080/api/v1/customers/${customerId}`
         );
         this.customer = response.data;
         this.editedCustomer = { ...this.customer };
@@ -46,8 +46,8 @@ export default {
     async updateCustomer() {
       try {
         const customerId = this.$route.params.id;
-        await axios.put(
-          `http://localhost:3000/customers/${customerId}`,
+        await axiosInstance.put(
+          `http://localhost:8080/api/v1/customers/${customerId}`,
           this.editedCustomer
         );
         alert("고객 정보가 수정되었습니다.");
