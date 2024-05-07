@@ -10,9 +10,6 @@
   <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../backend/minglecrm/build/classes/java/test" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../backend/minglecrm/build/generated/sources/annotationProcessor/java/test">
-      <sourceFolder url="file://$MODULE_DIR$/../../backend/minglecrm/build/generated/sources/annotationProcessor/java/test" isTestSource="true" generated="true" />
-    </content>
     <content url="file://$MODULE_DIR$/../../backend/minglecrm/src/test">
       <sourceFolder url="file://$MODULE_DIR$/../../backend/minglecrm/src/test/java" isTestSource="true" />
     </content>
