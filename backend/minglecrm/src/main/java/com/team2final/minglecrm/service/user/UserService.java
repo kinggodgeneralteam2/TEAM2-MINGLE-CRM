@@ -1,11 +1,9 @@
 package com.team2final.minglecrm.service.user;
 
-import com.team2final.minglecrm.controller.user.SignInRequestDTO;
-import com.team2final.minglecrm.controller.user.SignInResponseDTO;
-import com.team2final.minglecrm.controller.user.SignUpRequestDTO;
-import com.team2final.minglecrm.controller.user.SignUpResponseDTO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.team2final.minglecrm.controller.user.dto.SignInRequestDTO;
+import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.SignUpRequestDTO;
+import com.team2final.minglecrm.controller.user.dto.SignUpResponseDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 

@@ -2,8 +2,8 @@ package com.team2final.minglecrm.service.jwt;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.team2final.minglecrm.controller.user.SignInResponseDTO;
-import com.team2final.minglecrm.controller.user.TokenResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.TokenResponseDTO;
 import com.team2final.minglecrm.domain.User;
 import com.team2final.minglecrm.repository.UserRepository;
 import com.team2final.minglecrm.util.redis.RedisDao;
@@ -13,7 +13,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 

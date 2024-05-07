@@ -1,13 +1,12 @@
 package com.team2final.minglecrm.service.user;
 
-import com.team2final.minglecrm.controller.user.SignInRequestDTO;
-import com.team2final.minglecrm.controller.user.SignInResponseDTO;
-import com.team2final.minglecrm.controller.user.SignUpRequestDTO;
-import com.team2final.minglecrm.controller.user.SignUpResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.SignInRequestDTO;
+import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.SignUpRequestDTO;
+import com.team2final.minglecrm.controller.user.dto.SignUpResponseDTO;
 import com.team2final.minglecrm.domain.User;
 import com.team2final.minglecrm.repository.UserRepository;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
-import com.team2final.minglecrm.vo.Subject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
