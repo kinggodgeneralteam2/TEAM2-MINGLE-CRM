@@ -23,59 +23,69 @@
 </template>
 
 <script>
+import { useAuthStore } from '../storage/auth';
+import { ref } from 'vue';
 import axios from 'axios';
 
 export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-      message: '',
-      isSuccess: false,
-      userId: null // 로그인한 사용자의 ID를 저장할 변수
-    };
-  },
-  methods: {
-    async login() {
+  setup() {
+    const authStore = useAuthStore(); // Pinia Store 불러오기
+
+    const email = ref(''); // 이메일
+    const password = ref(''); // 비밀번호
+    const message = ref(''); // 로그인 결과 메시지
+    const isSuccess = ref(false); // 로그인 성공 여부
+    // const userId = ref(null); // 로그인한 사용자의 ID
+
+    // 로그인 함수
+    const login = async () => {
       try {
         // 서버에서 사용자 정보 가져오기
-        const response = await axios.get('http://localhost:3000/users');
-        const users = response.data;
+        const response = await axios.post('http://localhost:8080/api/v1/auth/signin', {
+          email: email.value,
+          password: password.value
+        });
 
-        // 사용자 배열이 정의되지 않은 경우 오류 처리
-        if (!users || users.length === 0) {
-          console.error('사용자 데이터가 없습니다.');
-          this.message = '사용자 데이터가 없습니다.';
-          return;
-        }
+        const tokens = response.data;
 
-        // 로그인 시도
-        const user = users.find(user => user.email === this.email && user.password === this.password);
-        if (user) {
-          // 로그인 성공 메시지 표시
-          this.message = `${user.name}님, 환영합니다!`;
-          this.isSuccess = true; // 성공 여부를 true로 설정하여 회원 정보 수정 버튼 표시
-          this.userId = user.id; // 로그인한 사용자의 ID 저장
-        } else {
-          // 로그인 실패 메시지 표시
-          this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
-          this.isSuccess = false;
-        }
+        // Pinia Store에 토큰 설정
+        authStore.setTokens(tokens.atk, tokens.rtk);
+
+        // AccessToken 저장
+        localStorage.setItem('accessToken', tokens.atk);
+
+        // RefreshToken 저장 (HTTP Only 쿠키)
+        document.cookie = `refreshToken=${tokens.rtk}; Secure; SameSite=Strict;`;
+
+        // 로그인 성공 메시지 표시
+        message.value = '로그인에 성공했습니다.';
+        isSuccess.value = true;
+
+        console.log("tokens", tokens);
+
       } catch (error) {
         // 네트워크 오류 메시지 표시
         console.error('로그인 오류:', error);
-        this.message = '로그인에 실패했습니다.';
-        this.isSuccess = false;
+        message.value = '로그인에 실패했습니다.';
+        isSuccess.value = false;
       }
-    },
-    goToUpdatePage() {
+    };
+
+    // 회원 정보 수정 페이지로 이동 함수
+    const goToUpdatePage = () => {
       // 로그인한 사용자의 ID를 사용하여 회원 정보 수정 페이지로 이동
-      this.$router.push({ name: 'UserEdit', params: { id: this.userId } });
-    }
+      // 여기서는 this를 사용하지 않아야 합니다.
+      // 대신에 router를 직접 import하여 사용해야 합니다.
+      // 아래의 코드는 예시이며, 사용 중인 라우터에 따라 수정해야 합니다.
+      // import { useRouter } from 'vue-router';
+      // const router = useRouter();
+      // router.push({ name: 'UserEdit', params: { id: userId.value } });
+    };
+
+    return { email, password, message, isSuccess, login, goToUpdatePage };
   }
 };
 </script>
-
 <style scoped>
 .login-page {
   max-width: 600px;

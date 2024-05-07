@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from './axios-instance'; // 전역 Axios 인스턴스 import
 
 export default {
   data() {
@@ -39,8 +39,8 @@ export default {
   methods: {
     async fetchUser() {
       try {
-        const userId = this.$route.params.id;
-        const response = await axios.get(`http://localhost:3000/users/${userId}`);
+        // 사용자 정보를 가져오는 요청을 보낼 때 인증된 사용자의 토큰을 헤더에 포함하여 보냅니다.
+        const response = await axiosInstance.get('/user');
         this.user = response.data;
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -48,9 +48,8 @@ export default {
     },
     async updateUser() {
       try {
-        const userId = this.$route.params.id;
-        // PUT 요청 시 사용자 정보와 함께 URL에 사용자 ID를 포함시킵니다.
-        await axios.put(`http://localhost:3000/users/${userId}`, this.user);
+        // 사용자 정보를 업데이트하는 요청을 보낼 때 인증된 사용자의 토큰을 헤더에 포함하여 보냅니다.
+        await axiosInstance.put('/user', this.user);
         alert('사용자 정보가 성공적으로 업데이트되었습니다.');
         console.log('사용자 정보가 성공적으로 업데이트되었습니다.');
         // 사용자 정보가 성공적으로 업데이트되면 다른 작업을 수행할 수 있습니다.
