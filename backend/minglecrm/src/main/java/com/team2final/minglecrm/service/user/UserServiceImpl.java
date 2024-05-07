@@ -1,11 +1,9 @@
 package com.team2final.minglecrm.service.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.team2final.minglecrm.controller.user.dto.SignInRequestDTO;
-import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
-import com.team2final.minglecrm.controller.user.dto.SignUpRequestDTO;
-import com.team2final.minglecrm.controller.user.dto.SignUpResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.*;
 import com.team2final.minglecrm.domain.User;
+import com.team2final.minglecrm.dto.UserDetailResponse;
 import com.team2final.minglecrm.dto.UserResponse;
 import com.team2final.minglecrm.repository.UserRepository;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
@@ -91,5 +89,24 @@ public class UserServiceImpl implements UserService{
             userResponses.add(userResponse);
         }
         return userResponses;
+    }
+
+    @Override
+    public void updateUserDetail(Long userId, UserUpdateRequest userUpdateRequest) {
+        User user = userRepository.findById(userId).orElseThrow();
+        String encodedPassword = passwordEncoder.encode(userUpdateRequest.getPassword());
+        user.updateUser(userUpdateRequest, encodedPassword);
+    }
+
+    @Override
+    public UserDetailResponse findUser(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+
+        return UserDetailResponse.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .password(user.getPassword())
+                .build();
     }
 }

@@ -26,6 +26,9 @@
 import { useAuthStore } from '../storage/auth';
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { jwtDecode } from "jwt-decode";
+// const router = useRouter();'
 
 export default {
   setup() {
@@ -35,8 +38,8 @@ export default {
     const password = ref(''); // 비밀번호
     const message = ref(''); // 로그인 결과 메시지
     const isSuccess = ref(false); // 로그인 성공 여부
-    // const userId = ref(null); // 로그인한 사용자의 ID
-
+    const userId = ref(''); // 로그인한 사용자의 ID
+    const router = useRouter();
     // 로그인 함수
     const login = async () => {
       try {
@@ -61,6 +64,13 @@ export default {
         message.value = '로그인에 성공했습니다.';
         isSuccess.value = true;
 
+        const payload = jwtDecode(authStore.accessToken);
+        console.log(typeof payload.sub);
+
+
+        userId.value = payload.sub;
+        console.log(payload.sub.indexOf(6));
+        console.log(userId.value.indexOf(6));
         console.log("tokens", tokens);
 
       } catch (error) {
@@ -79,7 +89,8 @@ export default {
       // 아래의 코드는 예시이며, 사용 중인 라우터에 따라 수정해야 합니다.
       // import { useRouter } from 'vue-router';
       // const router = useRouter();
-      // router.push({ name: 'UserEdit', params: { id: userId.value } });
+      console.log(userId.value);
+      router.push({ name: 'UserEdit', params: { id: userId.value.indexOf(6) } });
     };
 
     return { email, password, message, isSuccess, login, goToUpdatePage };

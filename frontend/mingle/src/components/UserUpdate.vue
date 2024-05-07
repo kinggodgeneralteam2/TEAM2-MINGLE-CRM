@@ -10,10 +10,10 @@
         <label for="name">이름</label>
         <input id="name" v-model="user.name" type="text" required>
       </div>
-      <div class="form-group">
-        <label for="phone">전화번호</label>
-        <input id="phone" v-model="user.phone" type="tel" required>
-      </div>
+<!--      <div class="form-group">-->
+<!--        <label for="phone">전화번호</label>-->
+<!--        <input id="phone" v-model="user.phone" type="tel" required>-->
+<!--      </div>-->
       <div class="form-group">
         <!-- 비밀번호 입력 필드 추가 -->
         <label for="password">비밀번호</label>
@@ -41,7 +41,7 @@ export default {
       try {
         // 사용자 정보를 가져오는 요청을 보낼 때 인증된 사용자의 토큰을 헤더에 포함하여 보냅니다.
         const userId = this.$route.params.id;
-        const response = await axiosInstance.get(`http://localhost:3000/users/${userId}`);
+        const response = await axiosInstance.get(`http://localhost:8080/api/v1/users/${userId}`);
         this.user = response.data;
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -51,7 +51,7 @@ export default {
       try {
         const userId = this.$route.params.id;
         // PUT 요청 시 사용자 정보와 함께 URL에 사용자 ID를 포함시킵니다.
-        await axiosInstance.put(`http://localhost:3000/users/${userId}`, this.user);
+        await axiosInstance.put(`http://localhost:8080/api/v1/users/${userId}`, this.user);
         alert('사용자 정보가 성공적으로 업데이트되었습니다.');
         console.log('사용자 정보가 성공적으로 업데이트되었습니다.');
         // 사용자 정보가 성공적으로 업데이트되면 다른 작업을 수행할 수 있습니다.
