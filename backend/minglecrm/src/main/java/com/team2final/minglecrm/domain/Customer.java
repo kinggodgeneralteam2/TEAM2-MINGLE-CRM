@@ -32,4 +32,32 @@ public class Customer extends BaseTimeEntity {
     private String memo;
     private String gender;
     private LocalDate birth;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCustomer_group(String customer_group) {
+        this.customer_group = customer_group;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

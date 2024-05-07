@@ -83,12 +83,12 @@ public class CustomerServiceImplHP implements CustomerServiceHP{
     public void updateCustomer(Long id, CustomerUpdateDTO param) {
         Customer customer = customerRepositoryHP.findById(id).orElseThrow();
 
-//        customer.setName(param.getName());
-//        customer.setCustomer_group(param.getCustomerGroup());
-//        customer.setPhone(param.getPhone());
-//        customer.setAddress(param.getAddress());
-//        customer.setMemo(param.getMemo());
-//        customer.setGender(param.getGender());
+        customer.setName(param.getName());
+        customer.setCustomer_group(param.getCustomerGroup());
+        customer.setPhone(param.getPhone());
+        customer.setAddress(param.getAddress());
+        customer.setMemo(param.getMemo());
+        customer.setGender(param.getGender());
         User user = userRepository.findById(customer.getUser().getId()).orElseThrow();
         user.setName(param.getUserName());
 
