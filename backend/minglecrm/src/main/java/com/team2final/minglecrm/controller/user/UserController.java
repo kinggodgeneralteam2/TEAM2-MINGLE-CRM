@@ -1,12 +1,11 @@
 package com.team2final.minglecrm.controller.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.team2final.minglecrm.controller.user.dto.*;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
 import com.team2final.minglecrm.service.user.UserService;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/api/v1/auth/logout")
-    public ResponseEntity<Void> logout(HttpServletRequest request) {
+    public ResponseEntity<Void> logout(HttpServletRequest request) throws JsonProcessingException {
         String atk = request.getHeader("Authorization").substring(7);
         userService.logout(atk);
         return new ResponseEntity<Void>(HttpStatus.OK);

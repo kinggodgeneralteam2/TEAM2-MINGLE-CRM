@@ -1,0 +1,16 @@
+Index: .idea/modules/minglecrm.test.iml
+===================================================================
+diff --git a/.idea/modules/minglecrm.test.iml b/.idea/modules/minglecrm.test.iml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/modules/minglecrm.test.iml	
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module version="4">
++  <component name="AdditionalModuleElements">
++    <content url="file://$MODULE_DIR$/../../backend/minglecrm/build/generated/sources/annotationProcessor/java/test">
++      <sourceFolder url="file://$MODULE_DIR$/../../backend/minglecrm/build/generated/sources/annotationProcessor/java/test" isTestSource="true" generated="true" />
++    </content>
++  </component>
++</module>
+\ No newline at end of file

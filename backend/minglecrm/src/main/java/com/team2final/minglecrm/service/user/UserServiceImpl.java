@@ -1,12 +1,14 @@
 package com.team2final.minglecrm.service.user;
 
-import com.team2final.minglecrm.controller.user.SignInRequestDTO;
-import com.team2final.minglecrm.controller.user.SignInResponseDTO;
-import com.team2final.minglecrm.controller.user.SignUpRequestDTO;
-import com.team2final.minglecrm.controller.user.SignUpResponseDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.team2final.minglecrm.controller.user.dto.SignInRequestDTO;
+import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.SignUpRequestDTO;
+import com.team2final.minglecrm.controller.user.dto.SignUpResponseDTO;
 import com.team2final.minglecrm.domain.User;
 import com.team2final.minglecrm.repository.UserRepository;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
+import com.team2final.minglecrm.util.redis.RedisDao;
 import com.team2final.minglecrm.vo.Subject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +22,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final RedisDao redisDao;
 
     @Override
     @Transactional
@@ -59,9 +62,13 @@ public class UserServiceImpl implements UserService{
         return SignInResponseDTO.of(user);
     }
 
-//    @Override
-//    @Transactional
-//    public Void logout(String atk) {
-//
-//    }
+    @Override
+    @Transactional
+    public Void logout(String atk) throws JsonProcessingException {
+        Subject subject = jwtProvider.getSubject(atk);
+        redisDao.getValues(subject.getEmail());
+        redisDao.deleteValues(subject.getEmail());
+        System.out.println(subject.getEmail() + "로그아웃이요");
+        return null;
+    }
 }
