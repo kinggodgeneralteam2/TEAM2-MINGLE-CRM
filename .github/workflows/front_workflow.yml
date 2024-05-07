@@ -33,6 +33,6 @@ jobs :
         uses : docker/build-push-action@v2
         with :
           context : ./frontend/mingle/
-          file : Dockerfile
+          file : ./frontend/mingle/Dockerfile
           push : true
           tags : ${{ secrets.DOCKERHUB_USER_TH }}/mingle_front_vue:${{github.sha}}
