@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import SignUpPage from "@/views/SignUpPage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import UserListPage from "@/views/UserListPage.vue";
+import UserEditPage from "@/views/UserEditPage.vue";
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
     path: '/users',
     name: 'Users',
     component: UserListPage
+  },
+  {
+    path: '/users/:id/edit', // 사용자 정보 수정 페이지의 경로
+    name: 'UserEdit',
+    component: UserEditPage, // UserEditPage 컴포넌트를 사용하여 사용자 정보 수정 페이지를 나타냄
+    props: true // 동적 매개변수를 컴포넌트의 props로 전달
   }
 ]
 
