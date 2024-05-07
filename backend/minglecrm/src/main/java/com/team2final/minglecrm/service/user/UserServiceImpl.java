@@ -6,6 +6,7 @@ import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
 import com.team2final.minglecrm.controller.user.dto.SignUpRequestDTO;
 import com.team2final.minglecrm.controller.user.dto.SignUpResponseDTO;
 import com.team2final.minglecrm.domain.User;
+import com.team2final.minglecrm.dto.UserResponse;
 import com.team2final.minglecrm.repository.UserRepository;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
 import com.team2final.minglecrm.util.redis.RedisDao;
@@ -14,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -70,5 +74,22 @@ public class UserServiceImpl implements UserService{
         redisDao.deleteValues(subject.getEmail());
         System.out.println(subject.getEmail() + "로그아웃이요");
         return null;
+    }
+
+    @Override
+    public List<UserResponse> findAll() {
+        List<UserResponse> userResponses = new ArrayList<>();
+        List<User> users = userRepository.findAll();
+
+        for (User user : users) {
+            UserResponse userResponse = UserResponse.builder()
+                    .id(user.getId())
+                    .authority(user.getAuthority())
+                    .name(user.getName())
+                    .email(user.getEmail())
+                    .build();
+            userResponses.add(userResponse);
+        }
+        return userResponses;
     }
 }

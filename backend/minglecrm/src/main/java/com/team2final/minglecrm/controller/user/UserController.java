@@ -2,6 +2,7 @@ package com.team2final.minglecrm.controller.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.team2final.minglecrm.controller.user.dto.*;
+import com.team2final.minglecrm.dto.UserResponse;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
 import com.team2final.minglecrm.service.user.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,5 +49,10 @@ public class UserController {
         String atk = request.getHeader("Authorization").substring(7);
         userService.logout(atk);
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/api/v1/users")
+    public List<UserResponse> userResponse() {
+        return userService.findAll();
     }
 }
