@@ -35,4 +35,4 @@ jobs :
           context : ./frontend/mingle
           file : ./Dockerfile
           push : true
-          tags : ${{ secrets.DOCKERHUB_USERNAME }}/MINGLE-FRONT-VUE:${{github.sha}}
+          tags : ${{ secrets.DOCKERHUB_USER }}/MINGLE-FRONT-VUE:${{github.sha}}
