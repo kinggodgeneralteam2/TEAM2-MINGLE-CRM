@@ -3,6 +3,7 @@ package com.team2final.minglecrm.service.customer;
 import com.team2final.minglecrm.domain.Customer;
 import com.team2final.minglecrm.domain.User;
 import com.team2final.minglecrm.dto.CustomerListResponseDTO;
+import com.team2final.minglecrm.dto.CustomerResponse;
 import com.team2final.minglecrm.dto.CustomerUpdateDTO;
 import com.team2final.minglecrm.repository.CustomerRepositoryHP;
 import com.team2final.minglecrm.repository.UserRepository;
@@ -94,5 +95,24 @@ public class CustomerServiceImplHP implements CustomerServiceHP{
 
         customerRepositoryHP.save(customer);
         userRepository.save(user);
+    }
+
+    // 고객 단일 조회
+    @Override
+    public CustomerResponse findById(Long id) {
+
+        Customer customer = customerRepositoryHP.findById(id).orElseThrow();
+
+        return CustomerResponse.builder()
+                .id(customer.getId())
+                .address(customer.getAddress())
+                .name(customer.getName())
+                .customerGroup(customer.getCustomer_group())
+                .phone(customer.getPhone())
+                .birth(customer.getBirth())
+                .userName(customer.getUser().getName())
+                .memo(customer.getMemo())
+                .gender(customer.getGender())
+                .build();
     }
 }
