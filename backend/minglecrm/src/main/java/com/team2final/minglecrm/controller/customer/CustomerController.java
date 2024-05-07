@@ -5,8 +5,6 @@
     import com.team2final.minglecrm.dto.CustomerUpdateDTO;
     import com.team2final.minglecrm.service.customer.CustomerServiceHP;
     import com.team2final.minglecrm.service.jwt.JwtProvider;
-    import com.team2final.minglecrm.vo.Subject;
-    import jakarta.servlet.http.HttpServletRequest;
     import lombok.RequiredArgsConstructor;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
@@ -17,7 +15,7 @@
     @RestController
     @RequiredArgsConstructor
     @RequestMapping("/api/v1/customers")
-    public class CustomerControllerHP {
+    public class CustomerController {
 
         private final CustomerServiceHP customerServiceHP;
 

@@ -4,6 +4,8 @@ name : MIGLE CRM Frontend Vue3 Build & Push
 on :
   push :
     branches : [main]
+    paths:
+      - 'frontend/**'
 
 # 2. jobs - runner
 jobs :

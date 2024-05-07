@@ -4,6 +4,8 @@ name : MIGLE CRM Backend SpringBoot Build & Push
 on :
   push :
     branches : [main]
+    paths:
+      - 'backend/**'
 
 # 2. jobs - runner
 jobs :
