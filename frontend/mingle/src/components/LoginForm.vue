@@ -17,6 +17,8 @@
     </form>
     <!-- 로그인 결과 메시지 -->
     <p v-if="message" :class="{ message: true, 'message-success': isSuccess }">{{ message }}</p>
+    <!-- 로그인 성공 시 회원 정보 수정 버튼 -->
+    <button v-if="isSuccess" @click="goToUpdatePage">회원 정보 수정</button>
   </div>
 </template>
 
@@ -29,7 +31,8 @@ export default {
       email: '',
       password: '',
       message: '',
-      isSuccess: false // 로그인 성공 여부를 나타내는 변수 추가
+      isSuccess: false,
+      userId: null // 로그인한 사용자의 ID를 저장할 변수
     };
   },
   methods: {
@@ -51,11 +54,12 @@ export default {
         if (user) {
           // 로그인 성공 메시지 표시
           this.message = `${user.name}님, 환영합니다!`;
-          this.isSuccess = true; // 성공 여부를 true로 설정하여 메시지 스타일 변경
+          this.isSuccess = true; // 성공 여부를 true로 설정하여 회원 정보 수정 버튼 표시
+          this.userId = user.id; // 로그인한 사용자의 ID 저장
         } else {
           // 로그인 실패 메시지 표시
           this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
-          this.isSuccess = false; // 성공 여부를 false로 설정하여 메시지 스타일 변경
+          this.isSuccess = false;
         }
       } catch (error) {
         // 네트워크 오류 메시지 표시
@@ -63,33 +67,12 @@ export default {
         this.message = '로그인에 실패했습니다.';
         this.isSuccess = false;
       }
+    },
+    goToUpdatePage() {
+      // 로그인한 사용자의 ID를 사용하여 회원 정보 수정 페이지로 이동
+      this.$router.push({ name: 'UserEdit', params: { id: this.userId } });
     }
   }
-  // methods: {
-  //   async login() {
-  //     try {
-  //       const response = await axios.post('http://localhost:3000/login', {
-  //         email: this.email,
-  //         password: this.password
-  //       });
-  //
-  //       // 로그인 성공
-  //       this.message = `${response.data.name}님, 환영합니다!`;
-  //       this.isSuccess = true;
-  //     } catch (error) {
-  //       // 로그인 실패
-  //       if (error.response.status === 401) {
-  //         // 비밀번호가 틀린 경우 또는 사용자가 없는 경우
-  //         this.message = '이메일 또는 비밀번호가 잘못되었습니다.';
-  //       } else {
-  //         // 네트워크 오류
-  //         console.error('로그인 오류:', error);
-  //         this.message = '로그인에 실패했습니다.';
-  //       }
-  //       this.isSuccess = false;
-  //     }
-  //   }
-  // }
 };
 </script>
 
