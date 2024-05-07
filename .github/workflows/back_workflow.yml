@@ -1,5 +1,5 @@
 
-name : MIGLE CRM Frontend Vue3 Build & Push
+name : MIGLE CRM Backend SpringBoot Build & Push
 # 1. 이벤트 트리거 (on)
 on :
   push :
@@ -32,8 +32,8 @@ jobs :
       - name : Docker push
         uses : docker/build-push-action@v2
         with :
-          context : ./frontend/mingle/
-          file : ./frontend/mingle/Dockerfile
+          context : ./backend/minglecrm/
+          file : ./backend/minglecrm/Dockerfile
           push : true
           # 제거에 들어옵니다(thinghoon) 여러분들의 도커허브 시크릿키를 등록하시고 아래 이름을 바꿔주세요
-          tags : ${{ secrets.DOCKERHUB_USER_TH }}/mingle_front_vue:${{github.sha}}
+          tags : ${{ secrets.DOCKERHUB_USER_TH }}/mingle_backend_springboot:${{github.sha}}
