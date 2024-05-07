@@ -41,10 +41,10 @@ public class UserController {
         return new ResponseEntity<TokenResponseDTO>(responseDTO, HttpStatus.OK);
     }
 
-//    @GetMapping("/api/v1/auth/logout")
-//    public ResponseEntity<Void> logout(HttpServletRequest request) {
-//        String atk = request.getHeader("Authorization").substring(7);
-//        userService.logout(atk);
-//        return new ResponseEntity<Void>(HttpStatus.OK);
-//    }
+    @GetMapping("/api/v1/auth/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) throws JsonProcessingException {
+        String atk = request.getHeader("Authorization").substring(7);
+        userService.logout(atk);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 }
