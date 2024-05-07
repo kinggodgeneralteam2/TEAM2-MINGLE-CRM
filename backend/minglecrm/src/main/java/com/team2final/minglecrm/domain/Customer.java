@@ -25,12 +25,11 @@ public class Customer extends BaseTimeEntity {
     private String phone;
     private String address;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     private String memo;
     private String gender;
     private LocalDate birth;
-
 }
