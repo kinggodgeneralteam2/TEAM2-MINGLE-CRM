@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '../axios-instance'; // 전역 Axios 인스턴스 import
 
 export default {
   data() {
@@ -32,9 +32,10 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const response = await axios.get('http://localhost:3000/users');
+        const response = await axiosInstance.get('http://localhost:8080/api/v1/users');
         this.users = response.data;
         this.errorMessage = '';
+        console.log("hahahahaha", this.users);
       } catch (error) {
         console.error('유저 목록을 불러오는 중 에러 발생:', error);
         this.errorMessage = '유저 목록을 불러오는 중 에러가 발생했습니다.';

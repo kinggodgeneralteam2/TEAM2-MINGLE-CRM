@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axiosInstance from './axios-instance'; // 전역 Axios 인스턴스 import
+import axiosInstance from '../axios-instance'; // 전역 Axios 인스턴스 import
 
 export default {
   data() {
