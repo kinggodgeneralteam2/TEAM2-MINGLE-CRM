@@ -19,8 +19,43 @@
       "email": "rkdcksal02@gmail.com",
       "name": "강찬미",
       "phone": "01024551266",
-      "password": "1234"
+      "password": "1234567"
     }
   ],
-  "login": []
+  "login": [],
+  "customers": [
+    {
+      "id": "1",
+      "name": "김동지",
+      "customerGroup": "VIP",
+      "phone": "01012340001",
+      "address": "서울시 강남구 역삼동",
+      "user": "홍길동",
+      "memo": "정기 고객",
+      "gender": "남성",
+      "birth": "1990-05-15"
+    },
+    {
+      "id": "2",
+      "name": "김동자",
+      "customerGroup": "일반",
+      "phone": "01098765432",
+      "address": "서울시 서초구 반포동",
+      "user": "김영희",
+      "memo": "우럭 고객",
+      "gender": "여성",
+      "birth": "1985-08-20"
+    },
+    {
+      "id": "3",
+      "name": "김동재",
+      "customerGroup": "일반",
+      "phone": "01055556666",
+      "address": "경기도 수원시 영통구 매탄동",
+      "user": "이철수",
+      "memo": "신규 고객",
+      "gender": "남성",
+      "birth": "1995-12-10"
+    }
+  ]
 }
