@@ -2,6 +2,7 @@ package com.team2final.minglecrm.domain;
 
 
 import com.team2final.minglecrm.BaseTimeEntity;
+import com.team2final.minglecrm.controller.user.dto.UpdateUserRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -36,5 +37,10 @@ public class User extends BaseTimeEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void updateUser(UpdateUserRequest updateUserRequest, String encodePassword) {
+        this.name = updateUserRequest.getName();
+        this.password = encodePassword;
     }
 }

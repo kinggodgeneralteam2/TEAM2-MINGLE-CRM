@@ -5,6 +5,7 @@ import com.team2final.minglecrm.controller.user.dto.SignInRequestDTO;
 import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
 import com.team2final.minglecrm.controller.user.dto.SignUpRequestDTO;
 import com.team2final.minglecrm.controller.user.dto.SignUpResponseDTO;
+import com.team2final.minglecrm.controller.user.dto.UpdateUserRequest;
 import com.team2final.minglecrm.domain.User;
 import com.team2final.minglecrm.dto.UserResponse;
 import com.team2final.minglecrm.repository.UserRepository;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -59,7 +60,8 @@ public class UserServiceImpl implements UserService{
     public SignInResponseDTO signIn(SignInRequestDTO signInRequestDTO) {
         User user = userRepository.findByEmail(signInRequestDTO.getEmail()).get();
 
-        boolean matches = passwordEncoder.matches(signInRequestDTO.getPassword(), user.getPassword());
+        boolean matches = passwordEncoder.matches(signInRequestDTO.getPassword(),
+                user.getPassword());
         if (!matches) {
             return null;
         }
@@ -92,4 +94,12 @@ public class UserServiceImpl implements UserService{
         }
         return userResponses;
     }
+
+    @Override
+    public void updateUser(Long userId, UpdateUserRequest updateUserRequest) {
+        User user = userRepository.findById(userId).orElseThrow();
+        String encodePassword = passwordEncoder.encode(updateUserRequest.getPassword());
+        user.updateUser(updateUserRequest, encodePassword);
+    }
+
 }
