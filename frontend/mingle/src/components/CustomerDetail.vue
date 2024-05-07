@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <td>담당자</td>
-          <td>{{ customer.user }}</td>
+          <td>{{ customer.userName }}</td>
         </tr>
         <tr>
           <td>메모</td>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInstance from "../axios-instance"
 export default {
   data() {
     return {
@@ -63,8 +63,8 @@ export default {
         // 해당 고객의 ID를 라우트 파라미터에서 가져옴
         const customerId = this.$route.params.id;
         // 해당 고객의 정보를 서버에서 가져옴
-        const response = await axios.get(
-          `http://localhost:3000/customers/${customerId}`
+        const response = await axiosInstance.get(
+          `http://localhost:8080/api/v1/customers/${customerId}`
         );
         this.customer = response.data;
       } catch (error) {

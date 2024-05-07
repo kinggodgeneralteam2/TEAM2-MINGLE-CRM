@@ -28,7 +28,7 @@
             <td>{{ customer.customerGroup }}</td>
             <td>{{ customer.phone }}</td>
             <td>{{ customer.address }}</td>
-            <td>{{ customer.user }}</td>
+            <td>{{ customer.userName }}</td>
             <td>{{ customer.memo }}</td>
             <td>{{ customer.gender }}</td>
             <td>{{ customer.birth }}</td>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInstance from "../axios-instance"
 export default {
   data() {
     return {
@@ -56,7 +56,7 @@ export default {
   methods: {
     async fetchCustomers() {
       try {
-        const response = await axios.get("http://localhost:3000/customers");
+        const response = await axiosInstance.get("http://localhost:8080/api/v1/customers");
         this.customers = response.data;
         this.errorMessage = "";
       } catch (error) {
