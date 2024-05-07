@@ -28,6 +28,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { jwtDecode } from "jwt-decode";
+
 // const router = useRouter();'
 
 export default {
@@ -68,9 +69,9 @@ export default {
         console.log(typeof payload.sub);
 
 
-        userId.value = payload.sub;
-        console.log(payload.sub.indexOf(6));
-        console.log(userId.value.indexOf(6));
+        userId.value = JSON.parse(payload.sub);
+        console.log("payload:", payload.sub);
+        console.log("userId:", userId.value.id);
         console.log("tokens", tokens);
 
       } catch (error) {
@@ -90,7 +91,7 @@ export default {
       // import { useRouter } from 'vue-router';
       // const router = useRouter();
       console.log(userId.value);
-      router.push({ name: 'UserEdit', params: { id: userId.value.indexOf(6) } });
+      router.push({ name: 'UserEdit', params: { id: userId.value.id } });
     };
 
     return { email, password, message, isSuccess, login, goToUpdatePage };

@@ -1,19 +1,21 @@
 spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:mingledb
-    username: sa
-    password:
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3306/mingle
+#    username: root
+#    password: 123456789
+
   jpa:  # https://joyerim.tistory.com/6#%E2%96%AA%C2%A0JPA-1
     defer-datasource-initialization: true
     show-sql: true
     hibernate:
       ddl-auto: create
       generate-ddl: true
+      dialect: org.hibernate.dialect.MariaDBDialect
 
   data:
     redis:
-      host: localhost
+      host: redis
       port: 6379
 
   jwt:
@@ -21,3 +23,7 @@ spring:
     live:
       atk: 300000
       rtk: 3000000
+
+mariadb:
+  host: "%"
+  port: 3306

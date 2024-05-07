@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend/mingle
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend/mingle:/app
+    command: npm run serve --host
+    networks:
+      - mingle_network
+
+  database:
+    container_name: maria_db
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: mingle
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 1234
+
+    networks:
+      - mingle_network
+
+  backend:
+    build:
+      context: ./backend/minglecrm
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://maria_db:3306/mingle?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "1234"
+    depends_on:
+      - database
+    ports:
+      - "8080:8080"
+    networks:
+      - mingle_network
+  
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - mingle_network
+
+networks:
+  mingle_network:
+    driver: bridge
