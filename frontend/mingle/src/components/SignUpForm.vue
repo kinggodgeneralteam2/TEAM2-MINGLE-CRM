@@ -81,7 +81,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('http://localhost:3000/users', {
+        const response = await axios.post('http://localhost:8080/api/v1/auth/signup', {
           email: this.email,
           name: this.name,
           phone: this.phone,
