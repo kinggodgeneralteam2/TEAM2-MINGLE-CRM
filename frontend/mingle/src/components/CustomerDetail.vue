@@ -1,0 +1,103 @@
+<template>
+  <div class="customer-detail">
+    <h2>고객 상세 정보</h2>
+    <table class="customer-detail-table">
+      <tbody>
+        <tr>
+          <td>id</td>
+          <td>{{ customer.id }}</td>
+        </tr>
+        <tr>
+          <td>이름</td>
+          <td>{{ customer.name }}</td>
+        </tr>
+        <tr>
+          <td>등급</td>
+          <td>{{ customer.customerGroup }}</td>
+        </tr>
+        <tr>
+          <td>전화번호</td>
+          <td>{{ customer.phone }}</td>
+        </tr>
+        <tr>
+          <td>주소</td>
+          <td>{{ customer.address }}</td>
+        </tr>
+        <tr>
+          <td>전화번호</td>
+          <td>{{ customer.phone }}</td>
+        </tr>
+        <tr>
+          <td>담당자</td>
+          <td>{{ customer.user }}</td>
+        </tr>
+        <tr>
+          <td>메모</td>
+          <td>{{ customer.memo }}</td>
+        </tr>
+        <tr>
+          <td>성별</td>
+          <td>{{ customer.gender }}</td>
+        </tr>
+        <tr>
+          <td>생일</td>
+          <td>{{ customer.birth }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      customer: {},
+    };
+  },
+  created() {
+    // 페이지가 생성될 때 해당 고객 정보를 가져오는 메서드 호출
+    this.fetchCustomerDetails();
+  },
+  methods: {
+    async fetchCustomerDetails() {
+      try {
+        // 해당 고객의 ID를 라우트 파라미터에서 가져옴
+        const customerId = this.$route.params.id;
+        // 해당 고객의 정보를 서버에서 가져옴
+        const response = await axios.get(
+          `http://localhost:3000/customers/${customerId}`
+        );
+        this.customer = response.data;
+      } catch (error) {
+        console.error("고객 정보를 불러오는 중 에러 발생:", error);
+        // 에러 처리 로직 추가
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+.customer-detail {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.customer-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customer-detail-table td {
+  padding: 10px;
+  border: 1px solid #dddddd;
+}
+
+.customer-detail-table td:first-child {
+  font-weight: bold;
+  width: 30%;
+  background-color: #f2f2f2;
+}
+</style>

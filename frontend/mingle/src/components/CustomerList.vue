@@ -21,6 +21,7 @@
             v-for="customer in customers"
             :key="customer.id"
             class="customer-row"
+            @click="goToCustomerDetail(customer.id)"
           >
             <td>{{ customer.id }}</td>
             <td>{{ customer.name }}</td>
@@ -62,6 +63,9 @@ export default {
         console.error("고객 목록을 불러오는 중 에러 발생:", error);
         this.errorMessage = "고객 목록을 불러오는 중 에러가 발생했습니다.";
       }
+    },
+    goToCustomerDetail(customerId) {
+      this.$router.push({ name: "CustomerDetail", params: { id: customerId } });
     },
   },
 };

@@ -4,6 +4,7 @@ import SignUpPage from "@/views/SignUpPage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import UserListPage from "@/views/UserListPage.vue";
 import CustomerListPage from "@/views/CustomerListPage.vue";
+import CustomerDetailPage from "@/views/CustomerDetailPage.vue";
 
 const routes = [
   {
@@ -39,6 +40,12 @@ const routes = [
     path: "/customers",
     name: "Customers",
     component: CustomerListPage,
+  },
+  {
+    path: "/customer/:id",
+    name: "CustomerDetail",
+    component: CustomerDetailPage,
+    props: true,
   },
 ];
 
