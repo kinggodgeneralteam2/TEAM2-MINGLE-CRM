@@ -1,0 +1,17 @@
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/FINAL.iml\" filepath=\"$PROJECT_DIR$/.idea/FINAL.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/minglecrm.main.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/minglecrm.main.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+--- a/.idea/modules.xml	
++++ b/.idea/modules.xml	
+@@ -4,6 +4,7 @@
+     <modules>
+       <module fileurl="file://$PROJECT_DIR$/.idea/FINAL.iml" filepath="$PROJECT_DIR$/.idea/FINAL.iml" />
+       <module fileurl="file://$PROJECT_DIR$/.idea/modules/minglecrm.main.iml" filepath="$PROJECT_DIR$/.idea/modules/minglecrm.main.iml" />
++      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minglecrm.test.iml" filepath="$PROJECT_DIR$/.idea/modules/minglecrm.test.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file

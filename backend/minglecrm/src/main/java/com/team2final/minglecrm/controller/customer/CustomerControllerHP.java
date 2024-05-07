@@ -1,4 +1,4 @@
-    package com.team2final.minglecrm.controller.user;
+    package com.team2final.minglecrm.controller.customer;
 
     import com.team2final.minglecrm.dto.CustomerListResponseDTO;
     import com.team2final.minglecrm.dto.CustomerUpdateDTO;

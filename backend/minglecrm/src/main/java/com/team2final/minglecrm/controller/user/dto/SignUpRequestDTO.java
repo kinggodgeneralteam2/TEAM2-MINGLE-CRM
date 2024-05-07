@@ -1,4 +1,4 @@
-package com.team2final.minglecrm.controller.user;
+package com.team2final.minglecrm.controller.user.dto;
 
 
 import lombok.Builder;
