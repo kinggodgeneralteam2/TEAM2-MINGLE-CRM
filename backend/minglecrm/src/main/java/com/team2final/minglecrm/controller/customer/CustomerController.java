@@ -46,6 +46,7 @@
         @PutMapping("/{customerId}")
         public ResponseEntity<Void> updateCustomer(@PathVariable ("customerId") Long Id, @RequestBody CustomerUpdateDTO customerUpdateDTO) {
             customerServiceHP.updateCustomer(Id, customerUpdateDTO);
+            System.out.println("haha");
             return ResponseEntity.ok().build();
         }
 
