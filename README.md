@@ -15,13 +15,21 @@
 - 하지민
 
 ## 1. 프로젝트 개요 ##
-효과적인 고객 관리를 위한 어쩌구저쩌구
+효과적인 고객 관리를 위한 호텔 & 리조트 고객 관리 서비스
 
 ## 2. 프로젝트 관리 ##
 - **요구사항 명세서**
 - **시스템 아키텍쳐**
+- ![풀젠](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/b9f8e6b3-fca0-43cd-aa4f-6c10ad76ce53)
+
 - **Devops 빌드 / 배포문서**
 - **API 명세서**
+#### github action workflows ####
+![image (7)](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/7dd04220-e564-41d5-86d3-21490ff0e0f2)
+frontend
+![image (6)](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/4ed535c8-5cc3-4201-9716-efe67cbcf6fa)
+backend
+
 - **테스트 결과**
 
 #### 기술스택 ####
@@ -45,7 +53,33 @@
 ### 2.4 테스트 결과 ###
 
 ***
-![image](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/155680893/bc495297-7c86-49de-ac89-f042c1547acd)\
+![image](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/155680893/bc495297-7c86-49de-ac89-f042c1547acd)
+
+### User
+![회원가입 페이지](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/bfbbb7a2-9c19-4397-9451-11759e55c511)
+- 회원가입 페이지
+
+![회원가입 완료 페이지](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/d32a2148-de90-48f8-85c3-be037f0bb88e)
+- 회원가입 완료 페이지
+
+![로그인 페이지](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/2db81cc8-55e3-467f-bf82-7ccb36aa06ef)
+- 로그인 페이지
+
+![로그인 성공](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/be778c43-b961-4fec-9505-36467e6508a9)
+- 로그인 성공
+
+![직원목록](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/0df57e92-fbee-41ee-8a3f-bf128270687c)
+- 직원 목록
+
+![직원 정보 수정 페이지 전](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/bf8bbf37-51ba-4529-8639-f7718daffc47)
+- 직원 정보 수정 페이지 전
+
+![직원 정보 수정](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/bd2f26fb-9627-48da-817e-d4db3692d2b8)
+- 직원 정보 수정
+
+![직원 정보 수정 페이지 후](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/6c6f97ed-3cc3-4ea3-bab2-abf6774c71e7)
+- 직원 정보 수정 페이지 후
+
 
 ## 3. 고도화 계획 ##
 
