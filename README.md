@@ -80,6 +80,23 @@ backend
 ![직원 정보 수정 페이지 후](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/6c6f97ed-3cc3-4ea3-bab2-abf6774c71e7)
 - 직원 정보 수정 페이지 후
 
+### Customer
+![고객관리 리스트](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/d4ea6604-7fbb-40cf-9047-648e076ca32e)
+- 고객관리 리스트 페이지
+- 
+![고객관리 상세정보](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/7685e970-9e63-4eab-8e20-9551f5817f57)
+- 고객관리 상세정보 페이지
+
+![고객 관리 수정 페이지](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/67e43eee-15ba-4983-9e11-22e95305d46a)
+- 고객 관리 수정 페이지
+
+![고객정보 수정](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/7cca6fcd-3eba-42d3-bdaf-9781e67ed1e2)
+- 고객정보 수정 
+
+![고객관리 수정 후](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/bb0fedc4-1d70-4349-bff7-6bf4c18271d9)
+- 고객관리 수정 후 
+
+
 
 ## 3. 고도화 계획 ##
 
