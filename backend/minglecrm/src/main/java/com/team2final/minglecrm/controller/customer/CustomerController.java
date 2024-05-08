@@ -47,6 +47,7 @@
         public ResponseEntity<Void> updateCustomer(@PathVariable ("customerId") Long Id, @RequestBody CustomerUpdateDTO customerUpdateDTO) {
             customerServiceHP.updateCustomer(Id, customerUpdateDTO);
             System.out.println("haha");
+            System.out.println("!!!");
             return ResponseEntity.ok().build();
         }
 
