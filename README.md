@@ -20,8 +20,6 @@
 ## 2. 프로젝트 관리 ##
 - **요구사항 명세서**
 - **시스템 아키텍쳐**
-- ![풀젠](https://github.com/kinggodgeneralteam2/TEAM2-MINGLE-CRM/assets/85616993/b9f8e6b3-fca0-43cd-aa4f-6c10ad76ce53)
-
 - **Devops 빌드 / 배포문서**
 - **API 명세서**
 #### github action workflows ####
