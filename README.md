@@ -220,7 +220,9 @@
  <summary>
     🌼시스템 아키텍처
   </summary>
-  ![image](https://github.com/kinggodgeneralteam2/BE05-FIN-2TEAM-MINGLECRM-BACKEND/assets/65129708/7ba84ad6-81ac-40d9-9692-2c6e1e63c74d)
+
+<img width="1039" alt="스크린샷 2024-05-20 오전 10 51 37" src="https://github.com/kinggodgeneralteam2/BE05-FIN-2TEAM-MINGLECRM-BACKEND/assets/65129708/7ba84ad6-81ac-40d9-9692-2c6e1e63c74d">
+  
 </details>
 
  <details>
