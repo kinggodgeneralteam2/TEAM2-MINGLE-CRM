@@ -2,13 +2,12 @@ package com.team2final.minglecrm.entity.hotel;
 
 
 import com.team2final.minglecrm.entity.customer.Customer;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -20,11 +19,17 @@ public class HotelReview {
     private Long id;
 
     private Double kindnessRating;
-    private Double clearlinessRating;
+    private Double cleanlinessRating;
     private Double convenienceRating;
     private Double locationRating;
     private String comment;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @OneToOne
+    @JoinColumn(name = "room_reservation_id")
     private RoomReservation roomReservation;
 
 

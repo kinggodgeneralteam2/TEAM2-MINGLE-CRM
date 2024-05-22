@@ -1,11 +1,8 @@
 package com.team2final.minglecrm.entity.log;
 
 import com.team2final.minglecrm.entity.employee.Employee;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,6 +18,8 @@ public class SignUpLog {
     @Column(name = "id", updatable = false)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "manager_id")
     private Employee employee;
 
     private String name;
@@ -33,11 +32,11 @@ public class SignUpLog {
 
     private LocalDateTime requestDate;
 
-    private Boolean approvalYn;
+    private Boolean isApproved;
 
     private LocalDateTime authorityChangeDate;
 
-    private Boolean deleteYn;
+    private Boolean isDeleted;
 
     private LocalDateTime deleteDate;
 

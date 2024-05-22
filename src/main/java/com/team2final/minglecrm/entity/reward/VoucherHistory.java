@@ -2,15 +2,14 @@ package com.team2final.minglecrm.entity.reward;
 
 import com.team2final.minglecrm.entity.customer.Customer;
 import com.team2final.minglecrm.entity.employee.Employee;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -22,15 +21,29 @@ public class VoucherHistory {
     @Column(name="id", updatable=false)
     private Long id;
 
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "voucher_id")
     private Voucher voucher;
 
     private LocalDateTime requestDate;
-    private Boolean authYn;
+
+    private Boolean isAuth;
+
     private LocalDateTime authDate;
-    private Boolean conversionYn;
+
+    private Boolean isConvertedYn;
+
     private LocalDateTime conversionDate;
 
-    private Employee employee;
-    private Employee employee;
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "manager_id")
+    private Employee employeeManager;
+
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "staff_id")
+    private Employee employeeStaff;
+
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 }

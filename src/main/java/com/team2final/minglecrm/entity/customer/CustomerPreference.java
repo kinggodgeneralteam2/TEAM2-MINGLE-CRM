@@ -1,10 +1,7 @@
 package com.team2final.minglecrm.entity.customer;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,11 +16,13 @@ public class CustomerPreference {
     @Column
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    private Boolean smokingYn;
+    private Boolean isSmoking;
     private String purpose;
-    private Boolean petYn;
+    private Boolean isPet;
     private LocalDateTime preferredCheckinTime;
     private LocalDateTime preferredCheckoutTime;
     private String dietaryRestrictions;

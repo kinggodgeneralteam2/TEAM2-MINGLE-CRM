@@ -13,7 +13,7 @@ public class CustomerListResponse {
 
     private Long id;
     private String name;
-    private String customerGroup;
+    private String grade;
     private String phone;
     private String address;
     private String employeeName;
@@ -22,10 +22,10 @@ public class CustomerListResponse {
     private LocalDate birth;
 
     @Builder
-    public CustomerListResponse(Long id, String name, String customerGroup, String phone, String address, String employeeName, String memo, String gender, LocalDate birth) {
+    public CustomerListResponse(Long id, String name, String grade, String phone, String address, String employeeName, String memo, String gender, LocalDate birth) {
         this.id = id;
         this.name = name;
-        this.customerGroup = customerGroup;
+        this.grade = grade;
         this.phone = phone;
         this.address = address;
         this.employeeName = employeeName;

@@ -1,7 +1,6 @@
 package com.team2final.minglecrm.entity.customer;
 
 
-import com.team2final.minglecrm.entity.BaseTimeEntity;
 import com.team2final.minglecrm.entity.employee.Employee;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Customer extends BaseTimeEntity {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,24 +26,29 @@ public class Customer extends BaseTimeEntity {
     private Long id;
 
     private String name;
-    private String customerGroup;
+
+    private String grade;
+
     private String phone;
+
     private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     private String memo;
+
     private String gender;
+
     private LocalDate birth;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setCustomerGroup(String customerGroup) {
-        this.customerGroup = customerGroup;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public void setPhone(String phone) {

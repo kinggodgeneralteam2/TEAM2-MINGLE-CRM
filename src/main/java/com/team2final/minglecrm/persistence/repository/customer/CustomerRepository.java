@@ -10,5 +10,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     List<Customer> findByEmployeeName(String employeeName);
 
-    List<Customer> findByCustomerGroup(String customerGroup);
+    List<Customer> findByGrade(String grade);
 }

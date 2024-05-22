@@ -7,7 +7,7 @@ import lombok.Getter;
 public class CustomerUpdateRequest {
 
     private String name;
-    private String customerGroup;
+    private String grade;
     private String phone;
     private String address;
     private String employeeName;

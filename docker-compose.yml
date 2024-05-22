@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  spring-app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://maria_db:3306/mingle?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1234
+
+  mariadb:
+    image: mariadb:latest
+    environment:
+      - MYSQL_DATABASE=mingle
+      - MYSQL_USER_HOST='%'
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+volumes:
+  mariadb_data:

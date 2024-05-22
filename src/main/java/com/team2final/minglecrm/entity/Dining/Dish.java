@@ -1,13 +1,11 @@
-package com.team2final.minglecrm.entity.Dining;
+package com.team2final.minglecrm.entity.dining;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -20,8 +18,10 @@ public class Dish {
 
     private String name;
     private Integer amount;
-    private Integer price;
+    private Long price;
 
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "dish_reservation_id")
     private DishReservation dishReservation;
 
 }

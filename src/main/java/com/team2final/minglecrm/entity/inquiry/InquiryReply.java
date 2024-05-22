@@ -1,11 +1,9 @@
 package com.team2final.minglecrm.entity.inquiry;
 
 import com.team2final.minglecrm.entity.customer.Customer;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.team2final.minglecrm.entity.employee.Employee;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,8 +19,12 @@ public class InquiryReply {
     @Column(name="id", updatable=false)
     private Long id;
 
-    private Customer customer;
+    @OneToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
+    @OneToOne
+    @JoinColumn(name = "inquiry_id")
     private Inquiry inquiry;
 
     private String reply;

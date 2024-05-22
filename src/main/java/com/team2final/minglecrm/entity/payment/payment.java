@@ -1,36 +1,38 @@
 package com.team2final.minglecrm.entity.payment;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.team2final.minglecrm.entity.customer.Customer;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class payment {
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", updatable=false)
     private Long id;
 
     private String type;
-    private Long amount_before_discount;
-    private Long discount_amount;
-    private Long payment_amount;
-    private LocalDateTime payment_date;
-    private Boolean refund_yn;
-    private LocalDateTime refund_date;
-    private Long created_reward;
+    private Long amountBeforeDiscount;
+    private Long discountAmount;
+    private Long paymentAmount;
+    private LocalDateTime paymentDate;
+    private Boolean isRefunded;
+    private LocalDateTime refundDate;
+    private Long createdReward;
 
-    private int customer_id;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    private String payment_spot;
+    private String paymentSpot;
 
 
 

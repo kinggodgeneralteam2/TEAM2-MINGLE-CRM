@@ -26,7 +26,7 @@ public class CustomerService {
                 .map(customer -> new CustomerListResponse(
                         customer.getId(),
                         customer.getName(),
-                        customer.getCustomerGroup(),
+                        customer.getGrade(),
                         customer.getPhone(),
                         customer.getAddress(),
                         customer.getEmployee().getName(),
@@ -44,7 +44,7 @@ public class CustomerService {
                 .map(customer -> new CustomerListResponse(
                         customer.getId(),
                         customer.getName(),
-                        customer.getCustomerGroup(),
+                        customer.getGrade(),
                         customer.getPhone(),
                         customer.getAddress(),
                         customer.getEmployee().getName(),
@@ -58,11 +58,11 @@ public class CustomerService {
     // 고객 그룹별 고객 조회
     @Transactional
     public List<CustomerListResponse> getCustomersByCustomerGroup(String customerGroup) {
-        return customerRepository.findByCustomerGroup(customerGroup).stream()
+        return customerRepository.findByGrade(customerGroup).stream()
                 .map(customer -> new CustomerListResponse(
                         customer.getId(),
                         customer.getName(),
-                        customer.getCustomerGroup(),
+                        customer.getGrade(),
                         customer.getPhone(),
                         customer.getAddress(),
                         customer.getEmployee().getName(),
@@ -79,7 +79,7 @@ public class CustomerService {
         Customer customer = customerRepository.findById(id).orElseThrow();
 
         customer.setName(param.getName());
-        customer.setCustomerGroup(param.getCustomerGroup());
+        customer.setGrade(param.getGrade());
         customer.setPhone(param.getPhone());
         customer.setAddress(param.getAddress());
         customer.setMemo(param.getMemo());

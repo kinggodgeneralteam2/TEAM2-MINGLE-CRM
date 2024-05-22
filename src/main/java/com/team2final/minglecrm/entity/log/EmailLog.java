@@ -2,14 +2,16 @@ package com.team2final.minglecrm.entity.log;
 
 
 import com.team2final.minglecrm.entity.customer.Customer;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.team2final.minglecrm.entity.event.Event;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
@@ -17,12 +19,19 @@ import lombok.NoArgsConstructor;
 public class EmailLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "event_id")
     private Event event;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "customer_")
     private Customer customer;
+
     private LocalDateTime isRead;
-    private LocalDateTime isClickdLink;
+
+    private LocalDateTime isClickedLink;
 
 }
