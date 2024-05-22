@@ -37,8 +37,8 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        CsrfTokenRequestAttributeHandler reqeustHandler = new CsrfTokenRequestAttributeHandler();
-        reqeustHandler.setCsrfRequestAttributeName("_csrf");
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName("_csrf");
 
         http.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
@@ -56,7 +56,7 @@ public class SecurityConfig {
                 }))
                 .csrf((csrf) ->
                         csrf.disable())
-//                        csrf.csrfTokenRequestHandler(reqeustHandler).ignoringRequestMatchers("/contact", "/register")
+//                        csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/contact", "/register")
 //                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
 //                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 //                .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)

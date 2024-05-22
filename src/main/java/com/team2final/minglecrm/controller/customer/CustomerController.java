@@ -2,7 +2,7 @@
 
     import com.team2final.minglecrm.dto.CustomerListResponseDTO;
     import com.team2final.minglecrm.dto.CustomerUpdateDTO;
-    import com.team2final.minglecrm.service.customer.CustomerServiceHP;
+    import com.team2final.minglecrm.service.customer.CustomerService;
     import lombok.RequiredArgsConstructor;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
@@ -12,9 +12,9 @@
     @RestController
     @RequiredArgsConstructor
     @RequestMapping("/api/v1/customers")
-    public class CustomerControllerHP {
+    public class CustomerController {
 
-        private final CustomerServiceHP customerServiceHP;
+        private final CustomerService customerServiceHP;
 
         // 토큰 있다는 가정
 //        private final JwtService jwtService;
