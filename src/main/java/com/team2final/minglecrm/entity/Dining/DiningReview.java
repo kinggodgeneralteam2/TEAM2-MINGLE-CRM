@@ -1,5 +1,6 @@
 package com.team2final.minglecrm.entity.dining;
 
+import com.team2final.minglecrm.entity.Dining.DishReservation;
 import com.team2final.minglecrm.entity.customer.Customer;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
