@@ -1,4 +1,4 @@
-package com.team2final.minglecrm.entity.Dining;
+package com.team2final.minglecrm.entity.dining;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
