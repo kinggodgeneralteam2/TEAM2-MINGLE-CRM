@@ -42,4 +42,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_TOKEN }}/mingle-backend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mingle-backend:latest
