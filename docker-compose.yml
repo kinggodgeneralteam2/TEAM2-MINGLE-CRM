@@ -8,9 +8,10 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:h2:mem:mingledb
       - SPRING_DATASOURCE_USERNAME=sa
-      - SPRING_DATASOURCE_PASSWORD=1234
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=createdocker-compose down
-
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+      - SPRING_H2_CONSOLE_ENABLED=true
+      - SPRING_H2_CONSOLE_SETTINGS_WEB_ALLOW_OTHERS=true
 
   # 아직은 H2 사용하는 관계로 우선은 주석처리 함.
 #  mariadb:
