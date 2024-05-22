@@ -2,12 +2,12 @@ package com.team2final.minglecrm.service.jwt;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.team2final.minglecrm.controller.user.dto.SignInResponseDTO;
-import com.team2final.minglecrm.controller.user.dto.TokenResponseDTO;
-import com.team2final.minglecrm.domain.User;
-import com.team2final.minglecrm.repository.UserRepository;
-import com.team2final.minglecrm.util.redis.RedisDao;
-import com.team2final.minglecrm.vo.Subject;
+import com.team2final.minglecrm.controller.employee.response.SignInResponse;
+import com.team2final.minglecrm.controller.employee.response.TokenResponse;
+import com.team2final.minglecrm.entity.employee.Employee;
+import com.team2final.minglecrm.persistence.repository.employee.EmployeeRepository;
+import com.team2final.minglecrm.persistence.dao.RedisDao;
+import com.team2final.minglecrm.controller.employee.vo.Subject;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -28,7 +28,7 @@ public class JwtProvider {
 
     private final ObjectMapper objectMapper;
     private final RedisDao redisDao;
-    private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Value("${spring.jwt.key}")
     private String key;
@@ -40,27 +40,27 @@ public class JwtProvider {
     private Long rtkLive;
 
 
-    public TokenResponseDTO createTokensBySignIn(SignInResponseDTO signInResponseDTO) throws JsonProcessingException {
-        User user = userRepository.findByEmail(signInResponseDTO.getEmail()).get();
+    public TokenResponse createTokensBySignIn(SignInResponse signInResponse) throws JsonProcessingException {
+        Employee employee = employeeRepository.findByEmail(signInResponse.getEmail()).get();
 
         Subject atkSubject = Subject.atk(
-                signInResponseDTO.getId(),
-                signInResponseDTO.getEmail(),
-                signInResponseDTO.getAuthority()
+                signInResponse.getId(),
+                signInResponse.getEmail(),
+                signInResponse.getAuthority()
         );
 
         Subject rtkSubject = Subject.rtk(
-                signInResponseDTO.getId(),
-                signInResponseDTO.getEmail(),
-                signInResponseDTO.getAuthority()
+                signInResponse.getId(),
+                signInResponse.getEmail(),
+                signInResponse.getAuthority()
         );
 
         String atk = createToken(atkSubject, atkLive);
         String rtk = createToken(rtkSubject, rtkLive);
 
-        redisDao.setValues(signInResponseDTO.getEmail(), rtk, Duration.ofMillis(rtkLive));
+        redisDao.setValues(signInResponse.getEmail(), rtk, Duration.ofMillis(rtkLive));
 
-        return new TokenResponseDTO(atk, rtk);
+        return new TokenResponse(atk, rtk);
     }
 
     // 토큰 생성 로직
@@ -95,7 +95,7 @@ public class JwtProvider {
      * AccessToken 만료시 AccessToken과 RefreshToken을 재발급(갱신)함
      *
      */
-    public TokenResponseDTO renewToken(String rtk) throws JsonProcessingException {
+    public TokenResponse renewToken(String rtk) throws JsonProcessingException {
         Subject subject = getSubject(rtk);
         String rtkInRedis = redisDao.getValues(subject.getEmail());
 
@@ -118,6 +118,6 @@ public class JwtProvider {
 
         // RefreshToken 갱신
         redisDao.setValues(subject.getEmail(), newRtk, Duration.ofMillis(rtkLive));
-        return new TokenResponseDTO(newAtk, newRtk);
+        return new TokenResponse(newAtk, newRtk);
     }
 }

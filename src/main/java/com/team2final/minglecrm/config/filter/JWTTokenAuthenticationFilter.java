@@ -1,20 +1,17 @@
 package com.team2final.minglecrm.config.filter;
 
 import com.team2final.minglecrm.service.jwt.JwtProvider;
-import com.team2final.minglecrm.vo.Subject;
+import com.team2final.minglecrm.controller.employee.vo.Subject;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.crypto.SecretKey;
 import java.io.IOException;
 
 public class JWTTokenAuthenticationFilter extends OncePerRequestFilter {
