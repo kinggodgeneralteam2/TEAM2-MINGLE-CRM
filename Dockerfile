@@ -1,5 +1,5 @@
 # OpenJDK 17과 Gradle 지정
-FROM gradle:7.6.1-jdk17 AS build
+FROM gradle:8.7-jdk17 AS build
 
 WORKDIR /app
 
