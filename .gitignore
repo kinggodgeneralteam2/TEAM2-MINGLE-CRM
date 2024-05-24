@@ -116,4 +116,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # SMTP Secret Key
-.src/main/resources/smtpproperties.yml
+src/main/resources/smtpproperties.yml
