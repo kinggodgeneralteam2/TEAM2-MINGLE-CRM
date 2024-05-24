@@ -41,7 +41,7 @@ public class EmployeeService {
                 .email(signUpRequest.getEmail())
                 .password(encodedPassword)
                 .name(signUpRequest.getName())
-                .authority("ROLE_STAFF")
+                .authority(signUpRequest.getAuthority())
                 .build();
 
         employeeRepository.save(employee);
