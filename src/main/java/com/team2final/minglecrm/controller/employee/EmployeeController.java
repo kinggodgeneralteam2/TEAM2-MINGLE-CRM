@@ -8,15 +8,15 @@ import com.team2final.minglecrm.controller.employee.request.SignUpRequest;
 import com.team2final.minglecrm.controller.employee.response.SignInResponse;
 import com.team2final.minglecrm.controller.employee.response.SignUpResponse;
 import com.team2final.minglecrm.controller.employee.response.TokenResponse;
-import com.team2final.minglecrm.service.email.MailService;
+import com.team2final.minglecrm.service.email.EmailAuthService;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
 import com.team2final.minglecrm.service.employee.EmployeeService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +28,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
     private final JwtProvider jwtProvider;
-    private final MailService mailService;
+    private final EmailAuthService emailAuthService;
 
     @PostMapping("/api/v1/auth/signup")
     public ResponseEntity<SignUpResponse> signUp(@RequestBody SignUpRequest requestDTO) {
@@ -57,18 +57,18 @@ public class EmployeeController {
         employeeService.logout(atk);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PostMapping("/api/v1/auth/signup/emailauth")
+    public ResponseEntity<Void> AuthEmailSend(@RequestBody SignUpEmailRequest signUpEmailRequest) throws MessagingException {
 
-    @PostMapping("/api/v1/auth/emailauth")
-    public ResponseEntity<Void> AuthEmailSend(@RequestBody @Valid SignUpEmailRequest signUpEmailRequest) throws MessagingException {
-        mailService.SendAuthEmail(signUpEmailRequest.getEmail());
-        return new ResponseEntity<>(HttpStatus.OK);
+        emailAuthService.SendAuthEmail(signUpEmailRequest.getEmail());
+
+        return ResponseEntity.noContent().build();
     }
+
 
     @PostMapping("/api/v1/auth/authcheck")
     public ResponseEntity<Void> AuthEmailCheck(@RequestBody SignUpEmailAuthRequest request) {
-        String email = request.getEmail();
-        String authCode = request.getAuthCode();
-        Boolean isCorrect = mailService.AuthEmailCheck(request.getAuthCode(), request.getEmail());
+        Boolean isCorrect = emailAuthService.AuthEmailCheck(request.getAuthCode(), request.getEmail());
         if (isCorrect) {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }

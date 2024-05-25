@@ -64,7 +64,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> {
                     requests
 //                            .requestMatchers("/user").authenticated()
-                            .requestMatchers("/api/v1/auth/signup", "/api/v1/auth/signin", "/h2-console/**", "/api/v1/auth/emailauth",
+                            .requestMatchers("/api/v1/auth/signup", "/api/v1/auth/signin", "/h2-console/**", "/api/v1/auth/signup/emailauth",
                             "/api/v1/auth/authcheck").permitAll()
                             .anyRequest().authenticated();
                 });
