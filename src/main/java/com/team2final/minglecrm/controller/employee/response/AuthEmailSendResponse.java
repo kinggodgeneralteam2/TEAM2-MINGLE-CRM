@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class SignUpEmailAuthResponse {
+public class AuthEmailSendResponse {
 
-    private final String tempo;
-
+    private final String status;
+    private final Boolean data;
 }

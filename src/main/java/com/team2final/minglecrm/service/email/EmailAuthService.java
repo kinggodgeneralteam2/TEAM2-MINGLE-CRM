@@ -1,6 +1,7 @@
 package com.team2final.minglecrm.service.email;
 
 import com.team2final.minglecrm.persistence.dao.RedisDao;
+import com.team2final.minglecrm.persistence.repository.employee.EmployeeRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class EmailAuthService {
     private String emailFrom;
     private final JavaMailSender mailSender;
     private final RedisDao redisDao;
+    private final EmployeeRepository employeeRepository;
 
     private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int CODE_LENGTH = 8;
@@ -54,6 +56,10 @@ public class EmailAuthService {
 
     public void SendAuthEmail(String toEmail) throws MessagingException {
 
+        if (employeeRepository.existsByEmail(toEmail)) {
+            throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
+        }
+
         String authCode = AuthCodeGenerate();
 
         sendMail(toEmail, "MingleCRM 회원가입 인증 이메일입니다!", authCode);
@@ -70,8 +76,7 @@ public class EmailAuthService {
             return false;
         }
 
-        redisDao.deleteValues(authEmail);
-
+        redisDao.deleteValues(authCode);
         return true;
     }
 }

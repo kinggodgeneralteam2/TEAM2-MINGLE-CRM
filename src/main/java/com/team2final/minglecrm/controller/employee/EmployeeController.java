@@ -5,9 +5,7 @@ import com.team2final.minglecrm.controller.employee.request.SignInRequest;
 import com.team2final.minglecrm.controller.employee.request.SignUpEmailAuthRequest;
 import com.team2final.minglecrm.controller.employee.request.SignUpEmailRequest;
 import com.team2final.minglecrm.controller.employee.request.SignUpRequest;
-import com.team2final.minglecrm.controller.employee.response.SignInResponse;
-import com.team2final.minglecrm.controller.employee.response.SignUpResponse;
-import com.team2final.minglecrm.controller.employee.response.TokenResponse;
+import com.team2final.minglecrm.controller.employee.response.*;
 import com.team2final.minglecrm.service.email.EmailAuthService;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
 import com.team2final.minglecrm.service.employee.EmployeeService;
@@ -57,22 +55,28 @@ public class EmployeeController {
         employeeService.logout(atk);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PostMapping("/api/v1/auth/signup/emailauth")
-    public ResponseEntity<Void> AuthEmailSend(@RequestBody SignUpEmailRequest signUpEmailRequest) throws MessagingException {
+    public ResponseEntity<AuthEmailSendResponse> AuthEmailSend(@RequestBody SignUpEmailRequest signUpEmailRequest) throws MessagingException {
 
-        emailAuthService.SendAuthEmail(signUpEmailRequest.getEmail());
+        try {
+            emailAuthService.SendAuthEmail(signUpEmailRequest.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.OK).body(new AuthEmailSendResponse("failed", false));
+        }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthEmailSendResponse("secuccess", true));
     }
 
 
     @PostMapping("/api/v1/auth/authcheck")
-    public ResponseEntity<Void> AuthEmailCheck(@RequestBody SignUpEmailAuthRequest request) {
+    public ResponseEntity<AuthEmailCheckResponse> AuthEmailCheck(@RequestBody SignUpEmailAuthRequest request) {
         Boolean isCorrect = emailAuthService.AuthEmailCheck(request.getAuthCode(), request.getEmail());
         if (isCorrect) {
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new AuthEmailCheckResponse("success", true));
         }
-        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthEmailCheckResponse("failed", false));
     }
 
 }
