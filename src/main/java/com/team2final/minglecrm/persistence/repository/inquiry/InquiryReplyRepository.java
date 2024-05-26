@@ -1,4 +1,4 @@
-package com.team2final.minglecrm.persistence.repository.inquiry;
+package com.team2final.minglecrm.persistence.repository.Inquiry;
 
 import com.team2final.minglecrm.entity.inquiry.InquiryReply;
 import org.springframework.data.jpa.repository.JpaRepository;
