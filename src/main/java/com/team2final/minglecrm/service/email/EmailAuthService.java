@@ -8,12 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.Duration;
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +26,7 @@ public class EmailAuthService {
     private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int CODE_LENGTH = 8;
 
-    public static String AuthCodeGenerate() {
+    public static String authCodeGenerate() {
         SecureRandom random = new SecureRandom();
         StringBuilder key = new StringBuilder(CODE_LENGTH);
 
@@ -54,18 +52,26 @@ public class EmailAuthService {
         mailSender.send(mail);
     }
 
-    public void SendAuthEmail(String toEmail) throws MessagingException {
+    public void SendSignUpAuthEmail(String toEmail) throws MessagingException {
 
         if (employeeRepository.existsByEmail(toEmail)) {
             throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
         }
 
-        String authCode = AuthCodeGenerate();
+        String authCode = authCodeGenerate();
 
         sendMail(toEmail, "MingleCRM 회원가입 인증 이메일입니다!", authCode);
 
         redisDao.setValues(authCode, toEmail, Duration.ofMillis(60 * 5000L));
 
+    }
+
+    public void SendSignInAuthEmail(String toEmail) throws MessagingException {
+        String authCode = authCodeGenerate();
+
+        sendMail(toEmail, "MingleCRM 로그인 인증 이메일입니다!", authCode);
+
+        redisDao.setValues(authCode, toEmail, Duration.ofMillis(60 * 5000L));
     }
 
     public Boolean AuthEmailCheck(String authCode, String toEmail) {

@@ -1,10 +1,7 @@
 package com.team2final.minglecrm.controller.employee;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.team2final.minglecrm.controller.employee.request.SignInRequest;
-import com.team2final.minglecrm.controller.employee.request.SignUpEmailAuthRequest;
-import com.team2final.minglecrm.controller.employee.request.SignUpEmailRequest;
-import com.team2final.minglecrm.controller.employee.request.SignUpRequest;
+import com.team2final.minglecrm.controller.employee.request.*;
 import com.team2final.minglecrm.controller.employee.response.*;
 import com.team2final.minglecrm.service.email.EmailAuthService;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
@@ -14,7 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,11 +30,35 @@ public class EmployeeController {
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
+    @PostMapping("/api/v1/auth/signin/valid")
+    public ResponseEntity<SignInValidResponse> signInValid(@RequestBody SignInRequest request) {
+        if(employeeService.isValidEmailAndPassword(request)) {
+            return ResponseEntity.status(HttpStatus.OK).body(new SignInValidResponse("success", true));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(new SignInValidResponse("failed", false));
+        }
+    }
+    @PostMapping("/api/v1/auth/signin/email")
+    public ResponseEntity<SignInEmailAuthResponse> SignInEmailAuth(@RequestBody SignInEmailAuthRequest request) throws MessagingException {
+        try {
+            emailAuthService.SendSignInAuthEmail(request.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.OK).body(new SignInEmailAuthResponse("failed", false));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(new SignInEmailAuthResponse("success", true));
+    }
+
     @PostMapping("/api/v1/auth/signin")
-    public ResponseEntity<TokenResponse> signIn(@RequestBody SignInRequest requestDTO) throws JsonProcessingException {
-        SignInResponse responseDTO = employeeService.signIn(requestDTO);
-        TokenResponse tokenResponse = jwtProvider.createTokensBySignIn(responseDTO);
-        return new ResponseEntity<>(tokenResponse, HttpStatus.ACCEPTED);
+    public ResponseEntity<TokenResponse> checkAuthCode(@RequestBody SignInCheckRequest request) throws JsonProcessingException {
+        Boolean isValidAuthCode = emailAuthService.AuthEmailCheck(request.getAuthCode(), request.getEmail());
+        if (!isValidAuthCode) {
+            return ResponseEntity.status(HttpStatus.OK).body(TokenResponse.builder()
+                    .status("failed")
+                    .build());
+        }
+        TokenResponse tokenResponse = jwtProvider.createTokensBySignIn(request.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body(tokenResponse);
     }
 
 
@@ -60,15 +80,13 @@ public class EmployeeController {
     public ResponseEntity<AuthEmailSendResponse> AuthEmailSend(@RequestBody SignUpEmailRequest signUpEmailRequest) throws MessagingException {
 
         try {
-            emailAuthService.SendAuthEmail(signUpEmailRequest.getEmail());
+            emailAuthService.SendSignUpAuthEmail(signUpEmailRequest.getEmail());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.OK).body(new AuthEmailSendResponse("failed", false));
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(new AuthEmailSendResponse("secuccess", true));
     }
-
 
     @PostMapping("/api/v1/auth/authcheck")
     public ResponseEntity<AuthEmailCheckResponse> AuthEmailCheck(@RequestBody SignUpEmailAuthRequest request) {
