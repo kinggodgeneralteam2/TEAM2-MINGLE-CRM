@@ -61,6 +61,18 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.OK).body(tokenResponse);
     }
 
+    @PostMapping("/api/v1/auth/signintest")
+    public ResponseEntity<TokenResponse> singInTest(@RequestBody SignInRequest request) throws JsonProcessingException {
+        if(employeeService.isValidEmailAndPassword(request)) {
+            TokenResponse tokenResponse = jwtProvider.createTokensBySignIn(request.getEmail());
+            return ResponseEntity.status(HttpStatus.OK).body(tokenResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(TokenResponse.builder()
+                    .status("failed")
+                    .build());
+        }
+    }
+
 
     @GetMapping("/api/v1/auth/renew")
     public ResponseEntity<TokenResponse> reNew(HttpServletRequest request) throws JsonProcessingException {
