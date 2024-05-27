@@ -3,6 +3,9 @@ INSERT INTO employee (name, email, password, authority, is_deleted)
 VALUES ('김동욱', 'dongwook@test.com', 'wook123', 'MANAGER', FALSE);
 INSERT INTO employee (name, email, password, authority, is_deleted)
 VALUES ('장명훈', 'myeonghoon@test.com', 'hoon123', 'STAFF', FALSE);
+INSERT INTO employee (name, email, password, authority, is_deleted)
+VALUES ('관리자', 'thinghoon@icloud.com', '$2a$10$m8ckfEF4dV2nlIa5Z/vkkezEcDc8eEaKQPKYaFJEsGv2ow.cFAkNq', 'STAFF', FALSE);
+
 
 -- CUSTOM 데이터 삽입
 INSERT INTO customer (name, grade, phone, address, employee_id, memo, gender, birth)

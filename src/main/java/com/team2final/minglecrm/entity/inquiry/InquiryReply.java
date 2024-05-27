@@ -19,7 +19,7 @@ public class InquiryReply {
     @Column(name="id", updatable=false)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
