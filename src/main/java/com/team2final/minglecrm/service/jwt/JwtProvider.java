@@ -40,27 +40,27 @@ public class JwtProvider {
     private Long rtkLive;
 
 
-    public TokenResponse createTokensBySignIn(SignInResponse signInResponse) throws JsonProcessingException {
-        Employee employee = employeeRepository.findByEmail(signInResponse.getEmail()).get();
+    public TokenResponse createTokensBySignIn(String email) throws JsonProcessingException {
+        Employee employee = employeeRepository.findByEmail(email).get();
 
         Subject atkSubject = Subject.atk(
-                signInResponse.getId(),
-                signInResponse.getEmail(),
-                signInResponse.getAuthority()
+                employee.getId(),
+                employee.getEmail(),
+                employee.getAuthority()
         );
 
         Subject rtkSubject = Subject.rtk(
-                signInResponse.getId(),
-                signInResponse.getEmail(),
-                signInResponse.getAuthority()
+                employee.getId(),
+                employee.getEmail(),
+                employee.getAuthority()
         );
 
         String atk = createToken(atkSubject, atkLive);
         String rtk = createToken(rtkSubject, rtkLive);
 
-        redisDao.setValues(signInResponse.getEmail(), rtk, Duration.ofMillis(rtkLive));
+        redisDao.setValues(employee.getEmail(), rtk, Duration.ofMillis(rtkLive));
 
-        return new TokenResponse(atk, rtk);
+        return new TokenResponse("success", atk, rtk);
     }
 
     // 토큰 생성 로직
@@ -118,6 +118,6 @@ public class JwtProvider {
 
         // RefreshToken 갱신
         redisDao.setValues(subject.getEmail(), newRtk, Duration.ofMillis(rtkLive));
-        return new TokenResponse(newAtk, newRtk);
+        return new TokenResponse("success", newAtk, newRtk);
     }
 }

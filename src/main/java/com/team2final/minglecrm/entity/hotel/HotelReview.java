@@ -7,6 +7,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
@@ -23,6 +25,7 @@ public class HotelReview {
     private Double convenienceRating;
     private Double locationRating;
     private String comment;
+    private LocalDateTime createdTime;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "customer_id")

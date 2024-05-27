@@ -5,12 +5,24 @@ import lombok.Getter;
 
 @Getter
 public class TokenResponse {
-    private final String atk;
-    private final String rtk;
+
+    private String status;
+    private Tokens data;
 
     @Builder
-    public TokenResponse(String atk, String rtk) {
-        this.atk = atk;
-        this.rtk = rtk;
+    @Getter
+    public static class Tokens {
+        private String atk;
+        private String rtk;
+    }
+
+    @Builder
+    public TokenResponse(String status, String atk, String rtk) {
+        this.status = status;
+        this.data = Tokens
+                    .builder()
+                    .atk(atk)
+                    .rtk(rtk)
+                    .build();
     }
 }

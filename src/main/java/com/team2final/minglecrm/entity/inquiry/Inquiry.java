@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +28,9 @@ public class Inquiry {
 
     private LocalDateTime date;
 
-    private String inquiry;
+    private String inquiryTitle;
+
+    private String inquiryContent;
 
     private String type;
 
@@ -36,5 +39,17 @@ public class Inquiry {
     private Boolean isActionNeeded;
 
     private String actionContent;
+
+    @Builder
+    public Inquiry(Customer customer, LocalDateTime date, String inquiryTitle, String inquiryContent, String type, Boolean isReply, Boolean isActionNeeded, String actionContent) {
+        this.customer = customer;
+        this.date = date;
+        this.inquiryTitle = inquiryTitle;
+        this.inquiryContent = inquiryContent;
+        this.isReply = isReply;
+        this.type = type;
+        this.isActionNeeded = isActionNeeded;
+        this.actionContent = actionContent;
+    }
 
 }
