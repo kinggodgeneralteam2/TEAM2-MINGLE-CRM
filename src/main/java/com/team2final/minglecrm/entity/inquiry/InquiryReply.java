@@ -35,18 +35,17 @@ public class InquiryReply {
     private LocalDateTime date;
 
     @Builder
-    public InquiryReply(Employee employee, Inquiry inquiry, String reply, LocalDateTime date){
+    public InquiryReply(Employee employee, Inquiry inquiry, String reply, LocalDateTime date) {
         this.employee = employee;
         this.inquiry = inquiry;
         this.reply = reply;
         this.date = date;
     }
 
-    
-
-
-
-
-
+    public void updateReply(String updatedReply, LocalDateTime date, Employee employee){
+        this.reply = updatedReply;
+        this.date = date;
+        this.employee = employee;
+    }
 
 }
