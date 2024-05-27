@@ -1,6 +1,5 @@
 package com.team2final.minglecrm.controller.inquiry.response;
 
-import com.team2final.minglecrm.entity.customer.Customer;
 import lombok.Builder;
 import lombok.Getter;
 

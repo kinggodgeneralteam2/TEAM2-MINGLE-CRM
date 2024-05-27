@@ -6,14 +6,13 @@ import com.team2final.minglecrm.controller.inquiry.response.InquiryResponse;
 import com.team2final.minglecrm.entity.employee.Employee;
 import com.team2final.minglecrm.entity.inquiry.Inquiry;
 import com.team2final.minglecrm.entity.inquiry.InquiryReply;
-import com.team2final.minglecrm.persistence.repository.Inquiry.InquiryReplyRepository;
-import com.team2final.minglecrm.persistence.repository.Inquiry.InquiryRepository;
 import com.team2final.minglecrm.persistence.repository.customer.CustomerRepository;
 import com.team2final.minglecrm.persistence.repository.employee.EmployeeRepository;
+import com.team2final.minglecrm.persistence.repository.inquiry.InquiryReplyRepository;
+import com.team2final.minglecrm.persistence.repository.inquiry.InquiryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
