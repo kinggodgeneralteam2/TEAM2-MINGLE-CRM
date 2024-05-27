@@ -35,4 +35,16 @@ VALUES
     (4, '2024-05-14', '문의 제목 10', '문의 내용 10', '온라인 문의', TRUE, TRUE, '고객 응답 대기');
 
 
-
+-- Reward 데이터 삽입
+INSERT INTO reward (amount, customer_id)
+VALUES (1000, 1);
+INSERT INTO reward (amount, customer_id)
+VALUES (500, 2);
+INSERT INTO reward (amount, customer_id)
+VALUES (750, 3);
+INSERT INTO reward (amount, customer_id)
+VALUES (1200, 4);
+INSERT INTO reward (amount, customer_id)
+VALUES (950, 5);
+INSERT INTO reward (amount, customer_id)
+VALUES (600, 6);
