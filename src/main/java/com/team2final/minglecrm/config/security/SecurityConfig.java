@@ -64,7 +64,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> {
                     requests
 //                            .requestMatchers("/user").authenticated()
-                            .requestMatchers("/api/v1/auth/signup", "/api/v1/auth/signin", "/h2-console/**").permitAll()
+                            .requestMatchers("/api/v1/auth/signup", "/api/v1/auth/signin", "/h2-console/**", "/api/v1/auth/signup/emailauth",
+                                    "/api/v1/auth/**").permitAll()
                             .anyRequest().authenticated();
                 });
         // h2-콘솔 접속 에러

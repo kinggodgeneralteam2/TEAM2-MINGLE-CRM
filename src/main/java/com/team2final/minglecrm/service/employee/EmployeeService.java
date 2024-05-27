@@ -1,10 +1,12 @@
 package com.team2final.minglecrm.service.employee;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.team2final.minglecrm.controller.employee.request.SignInEmailAuthRequest;
 import com.team2final.minglecrm.controller.employee.request.SignInRequest;
 import com.team2final.minglecrm.controller.employee.response.SignInResponse;
 import com.team2final.minglecrm.controller.employee.request.SignUpRequest;
 import com.team2final.minglecrm.controller.employee.response.SignUpResponse;
+import com.team2final.minglecrm.entity.employee.Employee;
 import com.team2final.minglecrm.persistence.repository.employee.EmployeeRepository;
 import com.team2final.minglecrm.service.jwt.JwtProvider;
 import com.team2final.minglecrm.persistence.dao.RedisDao;
@@ -13,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -50,7 +54,7 @@ public class EmployeeService {
 
     @Transactional(readOnly = true)
     public SignInResponse signIn(SignInRequest signInRequest) {
-        com.team2final.minglecrm.entity.employee.Employee employee = employeeRepository.findByEmail(signInRequest.getEmail()).get();
+        Employee employee = employeeRepository.findByEmail(signInRequest.getEmail()).get();
 
         boolean matches = passwordEncoder.matches(signInRequest.getPassword(), employee.getPassword());
         if (!matches) {
@@ -58,6 +62,36 @@ public class EmployeeService {
         }
         return SignInResponse.of(employee);
     }
+
+    @Transactional(readOnly = true)
+    public Boolean isEmailExists(String email) {
+        Employee employee = employeeRepository.findByEmail(email).orElseThrow();
+        return employee.getEmail().equals(email);
+    }
+
+    @Transactional(readOnly = true)
+    public Boolean isValidEmailAndPassword(SignInRequest request) {
+        Optional<Employee> tempEmployee = employeeRepository.findByEmail(request.getEmail());
+
+        if (tempEmployee.isPresent()) {
+            Employee employee = tempEmployee.get();
+
+            if (!employee.getEmail().equals(request.getEmail())) {
+                return false;
+            }
+
+            boolean matches = passwordEncoder.matches(request.getPassword(), employee.getPassword());
+            if (!matches) {
+                return false;
+            }
+
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
 
     @Transactional
     public Void logout(String atk) throws JsonProcessingException {
