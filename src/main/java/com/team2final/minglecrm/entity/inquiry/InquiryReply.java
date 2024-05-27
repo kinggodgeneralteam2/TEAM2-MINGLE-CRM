@@ -6,8 +6,11 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -19,7 +22,7 @@ public class InquiryReply {
     @Column(name="id", updatable=false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
@@ -30,6 +33,14 @@ public class InquiryReply {
     private String reply;
 
     private LocalDateTime date;
+
+    @Builder
+    public InquiryReply(Employee employee, Inquiry inquiry, String reply, LocalDateTime date){
+        this.employee = employee;
+        this.inquiry = inquiry;
+        this.reply = reply;
+        this.date = date;
+    }
 
     
 
