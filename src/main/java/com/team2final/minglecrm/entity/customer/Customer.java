@@ -1,7 +1,9 @@
 package com.team2final.minglecrm.entity.customer;
 
 
+import com.team2final.minglecrm.controller.customer.request.CustomerUpdateRequest;
 import com.team2final.minglecrm.entity.employee.Employee;
+import com.team2final.minglecrm.entity.reward.Reward;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,7 +25,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     private String name;
@@ -43,31 +46,20 @@ public class Customer {
 
     private LocalDate birth;
 
-    public void setName(String name) {
-        this.name = name;
+    @OneToOne(mappedBy = "customer")
+    private Reward reward;
+
+    private Boolean isDeleted;
+
+    public void updateCustomerDetail(CustomerUpdateRequest customerUpdateRequest) {
+        this.name = customerUpdateRequest.getName();
+        this.gender = customerUpdateRequest.getGender();
+        this.memo = customerUpdateRequest.getMemo();
+        this.phone = customerUpdateRequest.getPhone();
+        this.address = customerUpdateRequest.getAddress();
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void deleteCustomer() {
+        this.isDeleted = true;
     }
 }

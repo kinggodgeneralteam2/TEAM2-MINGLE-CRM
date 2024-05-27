@@ -28,7 +28,9 @@ public class Inquiry {
 
     private LocalDateTime date;
 
-    private String inquiry;
+    private String inquiryTitle;
+
+    private String inquiryContent;
 
     private String type;
 
@@ -39,10 +41,11 @@ public class Inquiry {
     private String actionContent;
 
     @Builder
-    public Inquiry(Customer customer, LocalDateTime date, String inquiry, String type, Boolean isReply, Boolean isActionNeeded, String actionContent) {
+    public Inquiry(Customer customer, LocalDateTime date, String inquiryTitle, String inquiryContent, String type, Boolean isReply, Boolean isActionNeeded, String actionContent) {
         this.customer = customer;
         this.date = date;
-        this.inquiry = inquiry;
+        this.inquiryTitle = inquiryTitle;
+        this.inquiryContent = inquiryContent;
         this.isReply = isReply;
         this.type = type;
         this.isActionNeeded = isActionNeeded;

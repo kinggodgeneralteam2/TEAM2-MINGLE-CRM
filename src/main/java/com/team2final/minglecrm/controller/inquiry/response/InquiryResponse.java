@@ -7,18 +7,24 @@ import java.time.LocalDateTime;
 
 @Getter
 public class InquiryResponse {
+    private String customerName;
+    private String customerPhone;
     private LocalDateTime date;
-    private String inquiry;
     private String type;
-    private String name;
-    private Long customerId;
+    private Boolean isReply;
+    private String employName;
+    private String inquiryTitle;
+    private String inquiryContent;
 
     @Builder
-    public InquiryResponse(LocalDateTime date, String inquiry, String type, String name, Long customerId) {
+    public InquiryResponse(String customerName, String customerPhone, LocalDateTime date, String type, Boolean isReply, String employName, String inquiryTitle, String inquiryContent) {
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
         this.date = date;
-        this.inquiry = inquiry;
         this.type = type;
-        this.name = name;
-        this.customerId = customerId;
+        this.isReply = isReply;
+        this.employName = employName;
+        this.inquiryTitle = inquiryTitle;
+        this.inquiryContent = inquiryContent;
     }
 }
