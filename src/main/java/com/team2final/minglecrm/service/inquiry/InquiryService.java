@@ -98,8 +98,9 @@ public class InquiryService {
 
 
     private InquiryResponse convertToDTO(Inquiry inquiry, InquiryReply inquiryReply) {
-        String employName = (inquiryReply != null) ? inquiryReply.getEmployee().getName() : null;
-        // 답변이 null이 아닐 경우만 실행
+        String employName = (inquiryReply != null) ? inquiryReply.getEmployee().getName() : null; // 답변이 null이 아닐 경우만 실행
+        boolean isReply = (inquiryReply != null); // 답변이 있으면 true
+
 
         return InquiryResponse.builder()
                 .customerName(inquiry.getCustomer().getName())
@@ -109,6 +110,7 @@ public class InquiryService {
                 .employName(employName)
                 .inquiryTitle(inquiry.getInquiryTitle())
                 .inquiryContent(inquiry.getInquiryContent())
+                .isReply(isReply)
                 .build();
     }
 
