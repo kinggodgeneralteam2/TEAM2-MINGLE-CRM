@@ -6,13 +6,13 @@ INSERT INTO employee (name, email, password, authority, is_deleted) VALUES
 
 
 -- CUSTOMER 데이터 삽입
-INSERT INTO customer (name, grade, phone, address, employee_id, memo, gender, birth) VALUES
-('권성지', 'VVIP', '010-1234-4321', 'seongji123@test.com', 1, '', 'Male', '1999-01-29'),
-('하지민', '신규', '010-4321-4321', 'jimin123@test.com', 1, '', 'Female', '1998-01-01'),
-('강찬미', '기존', '010-4132-4132', 'chanmi123@test.com', 1, '', 'Female', '2002-01-02'),
-('김동윽', 'VIP', '010-9876-9876', 'dongwwwwww@test.com', 2, '', 'Male', '1995-04-10'),
-('장띵훈', '기존', '010-3289-8903', 'thinghoon123@test.com', 2, '', 'Male', '1998-04-21'),
-('풀도젠깃갓리찬미', '기존', '010-3428-1342', 'fulli123@test.com', 2, '', 'Female', '2002-10-30');
+INSERT INTO customer (name, grade, phone, address, employee_id, memo, gender, birth, is_deleted) VALUES
+('권성지', 'VVIP', '010-1234-4321', 'seongji123@test.com', 1, '', 'Male', '1999-01-29', false),
+('하지민', '신규', '010-4321-4321', 'jimin123@test.com', 1, '', 'Female', '1998-01-01', false),
+('강찬미', '기존', '010-4132-4132', 'chanmi123@test.com', 1, '', 'Female', '2002-01-02', false),
+('김동윽', 'VIP', '010-9876-9876', 'dongwwwwww@test.com', 2, '', 'Male', '1995-04-10', false),
+('장띵훈', '기존', '010-3289-8903', 'thinghoon123@test.com', 2, '', 'Male', '1998-04-21', false),
+('풀도젠깃갓리찬미', '기존', '010-3428-1342', 'fulli123@test.com', 2, '', 'Female', '2002-10-30', false);
 
 -- INQUIRY 데이터 삽입
 INSERT INTO inquiry (customer_id, date, inquiry_title, inquiry_content, type, is_reply, is_action_needed, action_content)
@@ -56,16 +56,16 @@ INSERT INTO payment (type, amount_before_discount, discount_amount, payment_amou
 
 -- HOTEL_ROOM 데이터 삽입
 INSERT INTO hotel_room (hotel, address, room_number, room_type, room_state) VALUES
-('grand hotel', '서울 강남구', 101, 'suite', '예약 가능'),
-('grand hotel', '서울 강남구', 102, 'deluxe', '예약 중'),
-('grand hotel', '서울 강남구', 103, 'standard', '예약 가능'),
-('grand hotel', '서울 강남구', 104, 'suite', '예약 중'),
-('grand hotel', '서울 강남구', 105, 'deluxe', '예약 가능'),
-('grand hotel', '서울 강남구', 106, 'standard', '예약 가능'),
-('grand hotel', '서울 강남구', 107, 'suite', '예약 중'),
-('grand hotel', '서울 강남구', 108, 'deluxe', '예약 가능'),
-('grand hotel', '서울 강남구', 109, 'standard', '예약 중'),
-('grand hotel', '서울 강남구', 110, 'suite', '예약 가능');
+('grand hotel', '서울 강남구', 101, 'SUPERIOR', '예약 가능'),
+('grand hotel', '서울 강남구', 102, 'SUPERIOR', '예약 중'),
+('grand hotel', '서울 강남구', 103, 'DELUXE_DOUBLE', '예약 가능'),
+('grand hotel', '서울 강남구', 104, 'DELUXE_DOUBLE', '예약 중'),
+('grand hotel', '서울 강남구', 105, 'DELUXE_TWIN', '예약 가능'),
+('grand hotel', '서울 강남구', 106, 'DELUXE_TWIN', '예약 가능'),
+('grand hotel', '서울 강남구', 107, 'PREMIER_SUITE', '예약 중'),
+('grand hotel', '서울 강남구', 108, 'EXECUTIVE_SUITE', '예약 가능'),
+('grand hotel', '서울 강남구', 109, 'RESIDENTIAL_SUITE', '예약 중'),
+('grand hotel', '서울 강남구', 110, 'PLAZA_SUITE', '예약 가능');
 
 -- ROOM_RESERVATION 데이터 삽입
 INSERT INTO room_reservation (hotel_room_id, payment_id, customer_id, reservation_date, checkin_time, checkout_time, price) VALUES
