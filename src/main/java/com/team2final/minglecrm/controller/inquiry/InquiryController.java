@@ -2,6 +2,7 @@ package com.team2final.minglecrm.controller.inquiry;
 
 import com.team2final.minglecrm.controller.inquiry.request.InquiryActionRequest;
 import com.team2final.minglecrm.controller.inquiry.request.InquiryReplyRequest;
+import com.team2final.minglecrm.controller.inquiry.request.UpdateInquiryActionRequest;
 import com.team2final.minglecrm.controller.inquiry.request.UpdateInquiryReplyRequest;
 import com.team2final.minglecrm.controller.inquiry.response.InquiryActionResponse;
 import com.team2final.minglecrm.controller.inquiry.response.InquiryDetailResponse;
@@ -55,6 +56,14 @@ public class InquiryController {
     public ResponseEntity<InquiryActionResponse> actionToInquiry(@RequestBody InquiryActionRequest request) {
         InquiryActionResponse actionResponse = inquiryService.actionToInquiry(request);
         return ResponseEntity.ok(actionResponse);
+    }
+
+    @PostMapping("/action/{inquiryActionId}")
+    @PreAuthorize("hasRole('CONSULTANT')")
+    public ResponseEntity<InquiryActionResponse> updateInquiryAction(@PathVariable Long inquiryActionId,
+                                                                     @RequestBody UpdateInquiryActionRequest request) {
+        InquiryActionResponse updateAction = inquiryService.updateInquiryAction(inquiryActionId, request.getUpdateActionContent());
+        return ResponseEntity.ok(updateAction);
     }
 
 }

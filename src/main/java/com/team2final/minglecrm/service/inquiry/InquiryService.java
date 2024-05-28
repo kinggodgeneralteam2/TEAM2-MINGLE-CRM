@@ -125,6 +125,22 @@ public class InquiryService {
         return convertToActionDTO(saveAction);
     }
 
+    @Transactional
+    public InquiryActionResponse updateInquiryAction(Long inquiryActionId, String updateAction) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = authentication.getName();
+
+        Employee employee = employeeRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("로그인한 사용자를 찾을 수 없습니다."));
+
+        InquiryAction inquiryAction = inquiryActionRepository.findById(inquiryActionId)
+                .orElseThrow(() -> new RuntimeException("조치 내용을 찾을 수 없습니다."));
+
+        inquiryAction.updateAction(updateAction, LocalDateTime.now(), employee);
+
+        return convertToActionDTO(inquiryAction);
+    }
+
     private InquiryResponse convertToDTO(Inquiry inquiry, InquiryReply inquiryReply) {
         String employName = (inquiryReply != null) ? inquiryReply.getEmployee().getName() : null; // 답변이 null이 아닐 경우만 실행
         boolean isReply = (inquiryReply != null); // 답변이 있으면 true

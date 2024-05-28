@@ -3,8 +3,6 @@ package com.team2final.minglecrm.controller.inquiry.response;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 public class InquiryDetailResponse {
     private InquiryResponse inquiryResponse;

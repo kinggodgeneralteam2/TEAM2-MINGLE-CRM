@@ -43,9 +43,8 @@ public class InquiryAction {
         this.date = date;
     }
 
-    public void actionDetails(Boolean isActionNeeded, String actionContent, LocalDateTime date, Employee employee) {
-        this.isActionNeeded = isActionNeeded;
-        this.actionContent = actionContent;
+    public void updateAction(String updateAction, LocalDateTime date, Employee employee) {
+        this.actionContent = updateAction;
         this.date = date;
         this.employee = employee;
     }
