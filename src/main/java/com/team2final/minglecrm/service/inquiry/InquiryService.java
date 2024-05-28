@@ -50,14 +50,17 @@ public class InquiryService {
                 .orElseThrow(() -> new RuntimeException("문의를 찾을 수 없습니다."));
 
         InquiryReply reply = inquiryReplyRepository.findByInquiryId(inquiryId).orElse(null);
+        InquiryAction action = inquiryActionRepository.findByInquiryId(inquiryId).orElse(null);
 
         InquiryResponse inquiryResponse = convertToDTO(inquiry, reply);
         InquiryReplyResponse inquiryReplyResponse = (reply != null) ? convertToDTO(reply) : null;
+        InquiryActionResponse inquiryActionResponse = (action != null) ? convertToActionDTO(action) : null;
         // 문의에 답변 존재하는지 확인 -> 없으면 null
 
         return InquiryDetailResponse.builder()
                 .inquiryResponse(inquiryResponse)
                 .inquiryReplyResponse(inquiryReplyResponse)
+                .inquiryActionResponse(inquiryActionResponse)
                 .build();
     }
 

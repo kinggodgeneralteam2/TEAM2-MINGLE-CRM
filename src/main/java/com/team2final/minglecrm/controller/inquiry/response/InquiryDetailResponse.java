@@ -7,11 +7,13 @@ import lombok.Getter;
 public class InquiryDetailResponse {
     private InquiryResponse inquiryResponse;
     private InquiryReplyResponse inquiryReplyResponse;
+    private InquiryActionResponse inquiryActionResponse;
 
     @Builder
-    public InquiryDetailResponse(InquiryResponse inquiryResponse, InquiryReplyResponse inquiryReplyResponse) {
+    public InquiryDetailResponse(InquiryResponse inquiryResponse, InquiryReplyResponse inquiryReplyResponse, InquiryActionResponse inquiryActionResponse) {
         this.inquiryResponse = inquiryResponse;
         this.inquiryReplyResponse = inquiryReplyResponse;
+        this.inquiryActionResponse = inquiryActionResponse;
     }
 
 }
