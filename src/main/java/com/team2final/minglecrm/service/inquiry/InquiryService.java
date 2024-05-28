@@ -46,7 +46,7 @@ public class InquiryService {
 
         InquiryReply reply = inquiryReplyRepository.findByInquiryId(inquiryId).orElse(null);
 
-        InquiryResponse inquiryResponse = convertToDTO(inquiry);
+        InquiryResponse inquiryResponse = convertToDTO(inquiry, reply);
         InquiryReplyResponse inquiryReplyResponse = (reply != null) ? convertToDTO(reply) : null;
         // 문의에 답변 존재하는지 확인 -> 없으면 null
 
