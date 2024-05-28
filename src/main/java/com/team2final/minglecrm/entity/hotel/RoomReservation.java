@@ -44,10 +44,14 @@ public class RoomReservation {
             UpdateRoomReservationRequest updateRoomReservationRequest) {
         this.price = updateRoomReservationRequest.getPrice();
         this.reservationDate = updateRoomReservationRequest.getReservationDate();
-        this.customer.updateCustomerReservationDetail(updateRoomReservationRequest.getMemo(), updateRoomReservationRequest.getName());
+
+        this.customer.updateCustomerReservationDetail(
+                updateRoomReservationRequest.getMemo(),
+                updateRoomReservationRequest.getName()
+        );
     }
 
     public void deleteHotelReservation() {
-        this.payment.cancelHotelReservation(true);
+        this.payment.cancelReservation(true);
     }
 }
