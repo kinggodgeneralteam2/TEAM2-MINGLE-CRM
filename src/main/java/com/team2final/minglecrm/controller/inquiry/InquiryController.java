@@ -24,7 +24,6 @@ public class InquiryController {
     private final InquiryService inquiryService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('CONSULTANT', 'STAFF', 'MARKETER', 'MANAGER')")
     public ResponseEntity<List<InquiryResponse>> getAllInquiries() {
         List<InquiryResponse> inquiries = inquiryService.getAllInquiries();
         return ResponseEntity.ok(inquiries);
@@ -35,6 +34,13 @@ public class InquiryController {
         InquiryDetailResponse inquiryDetailResponse = inquiryService.getInquiryById(inquiryId);
         return ResponseEntity.ok(inquiryDetailResponse);
     }
+
+    @GetMapping("/unanswered")
+    public ResponseEntity<List<InquiryResponse>> getUnansweredInquiries() {
+        List<InquiryResponse> unansweredInquiries = inquiryService.getUnansweredInquiries();
+        return ResponseEntity.ok(unansweredInquiries);
+    }
+
 
     @PostMapping("/reply")
     @PreAuthorize("hasRole('CONSULTANT')")

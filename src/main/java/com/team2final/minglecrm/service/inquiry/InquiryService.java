@@ -45,6 +45,14 @@ public class InquiryService {
     }
 
     @Transactional
+    public List<InquiryResponse> getUnansweredInquiries() {
+        List<Inquiry> unansweredInquiries = inquiryRepository.findUnansweredInquiries();
+        return unansweredInquiries.stream()
+                .map(inquiry -> convertToDTO(inquiry, null)) // 답변이 없는 문의만 조회했으므로 inquiryReply는 항상 null
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
     public InquiryDetailResponse getInquiryById(Long inquiryId) {
         Inquiry inquiry = inquiryRepository.findById(inquiryId)
                 .orElseThrow(() -> new RuntimeException("문의를 찾을 수 없습니다."));
@@ -150,6 +158,7 @@ public class InquiryService {
 
 
         return InquiryResponse.builder()
+                .id(inquiry.getId())
                 .customerName(inquiry.getCustomer().getName())
                 .customerPhone(inquiry.getCustomer().getPhone())
                 .date(inquiry.getDate())

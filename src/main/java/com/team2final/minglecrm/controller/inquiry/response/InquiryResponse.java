@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 public class InquiryResponse {
+    private Long id;
     private String customerName;
     private String customerPhone;
     private LocalDateTime date;
@@ -17,7 +18,8 @@ public class InquiryResponse {
     private String inquiryContent;
 
     @Builder
-    public InquiryResponse(String customerName, String customerPhone, LocalDateTime date, String type, Boolean isReply, String employName, String inquiryTitle, String inquiryContent) {
+    public InquiryResponse(Long id, String customerName, String customerPhone, LocalDateTime date, String type, Boolean isReply, String employName, String inquiryTitle, String inquiryContent) {
+        this.id = id;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.date = date;
