@@ -64,7 +64,7 @@ public class InquiryService {
         InquiryReplyResponse inquiryReplyResponse = (reply != null) ? convertToDTO(reply) : null;
         InquiryActionResponse inquiryActionResponse = (action != null) ? convertToActionDTO(action) : null;
         // 문의에 답변 존재하는지 확인 -> 없으면 null
-
+        //test
         return InquiryDetailResponse.builder()
                 .inquiryResponse(inquiryResponse)
                 .inquiryReplyResponse(inquiryReplyResponse)
